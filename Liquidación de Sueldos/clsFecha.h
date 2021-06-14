@@ -20,6 +20,7 @@ class Fecha{
 
 void Fecha::cargar(){
     int aux;
+    cout<<endl;
     cout << "DIA: ";
     cin >> aux;
     if(aux >= 1 && aux <=31){setDia(aux);}

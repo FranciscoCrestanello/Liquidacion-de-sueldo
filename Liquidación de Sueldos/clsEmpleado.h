@@ -5,6 +5,7 @@ class Empleado{
 	private:
 	char nombre[25],apellido[25],email[35];
 	Fecha fechaDeNacimiento;
+	Fecha ingreso;
 	Domicilio domicilio;
 	int telefono, dni, cargo;
     float sueldo;
@@ -39,7 +40,6 @@ public:
 };
 
 void Empleado::cargar(){
-    cout<<"----- CARGA DE EMPLEADO -----"<<endl;
     cout<<"NOMBRE: ";
     cin>>nombre;
     cout<<"APELLIDO: ";
@@ -48,6 +48,8 @@ void Empleado::cargar(){
     cin>>email;
     cout<<"FECHA DE NACIMIENTO ";
     fechaDeNacimiento.cargar();
+    cout<<"FECHA DE INGRESO: ";
+    ingreso.cargar();
     cout<<"TELEFONO: ";
     cin>>telefono;
     cout<<"DNI: ";
@@ -61,12 +63,13 @@ void Empleado::cargar(){
     cout<<"ESTADO: "<<estado<<endl;
 }
 void Empleado::mostrar(){
-    cout<<"----- MOSTRAR EMPLEADO -----"<<endl;
     cout<<"NOMBRE: "<<nombre<<endl;
     cout<<"APELLIDO: "<<apellido<<endl;
     cout<<"EMAIL: "<<email<<endl;
     cout<<"FECHA DE NACIMIENTO: ";
     fechaDeNacimiento.mostrar();
+    cout<<"FECHA DE INGRESO: ";
+    ingreso.mostrar();
     domicilio.mostrar();
     cout<<"TELEFONO: "<<telefono<<endl;
     cout<<"DNI: "<<dni<<endl;
