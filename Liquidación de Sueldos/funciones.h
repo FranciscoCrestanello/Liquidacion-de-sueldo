@@ -6,6 +6,8 @@ bool cargarEmpleado(); //CARGA 1 EMPLEADO
 
 bool mostrarEmpleados(); //MUESTRA TODOS LOS EMPLEADOS
 
+int contadorDeCargos(); // CUENTA LA CANTIDAD DE CARGOS PARA HACER UN AUTONUMERICO EN CLASE CARGO FUNCION CARGAR
+
 bool cargarPreLiquidacion(); // CARGA UNA PRELIQUIDACION
 
 bool mostrarPreLiquidaciones(); //MUESTRA TODAS LAS PRELIQUIDACIONES.
@@ -44,6 +46,22 @@ bool mostrarEmpleados(){
         leyo=true;
     }
     return leyo;
+}
+
+int contadorDeCargos(){
+    int c = 0, tam;
+    FILE *p;
+
+    p = fopen(FILE_TABLA_CARGO,"rb");
+    if(p == NULL){return -1;}
+
+    fseek(p, 0, 2);
+    tam = ftell(p);
+
+    fclose(p);
+
+    c = tam/sizeof(Cargo);
+    return c;
 }
 
 bool cargarPreLiquidacion(){

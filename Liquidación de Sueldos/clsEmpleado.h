@@ -48,14 +48,37 @@ void Empleado::cargar(){
     cin>>email;
     cout<<"FECHA DE NACIMIENTO ";
     fechaDeNacimiento.cargar();
+    while(fechaDeNacimiento.getAnio()==-1||fechaDeNacimiento.getMes()==-1||fechaDeNacimiento.getDia()==-1){
+        cout<<"FECHA INCORRECTA. INGRESE UNA FECHA VALIDA: ";
+        fechaDeNacimiento.cargar();
+    }
     cout<<"FECHA DE INGRESO: ";
     ingreso.cargar();
+    while(ingreso.getAnio()==-1||ingreso.getMes()==-1||ingreso.getDia()==-1){
+        cout<<"FECHA INCORRECTA. INGRESE UNA FECHA VALIDA: ";
+        ingreso.cargar();
+    }
     cout<<"TELEFONO: ";
     cin>>telefono;
+    while(telefono<0){
+        cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: \nTelefono: ";
+        cin>>telefono;
+    }
     cout<<"DNI: ";
     cin>>dni;
+    while(dni<0){
+        cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: \nDNI: ";
+        cin>>dni;
+    }
+    int pos=0;
+    Cargo reg;
     cout<<"CARGO: ";
-    cin>>cargo;
+    cin>>cargo;                                                      //// EN LA VALIDACION DE CARGO ME QUEDE
+    while(reg.leerDeDisco(pos++)==false){
+        cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: \nDNI: ";
+        cin>>dni;
+        pos=0;
+    }
     cout<<"SUELDO: $";
     cin>>sueldo;
     domicilio.cargar();

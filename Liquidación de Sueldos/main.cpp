@@ -11,8 +11,8 @@ const char *FILE_LIQUIDACION = "Liquidacion.dat";
 const char *FILE_LIQUIDACION_BKP = "Liquidacion.bkp";
 const char *FILE_TABLA_DESC = "TablaDescuentos.dat";
 const char *FILE_TABLA_DESC_BKP = "TablaDescuentos.bkp";
-const char *FILE_TABLA_REMUN = "TablaRemunerativo.dat";
-const char *FILE_TABLA_REMUN_BKP = "TablaRemunerativo.bkp";
+const char *FILE_TABLA_CARGO = "TablaCargos.dat";
+const char *FILE_TABLA_CARGO_BKP = "TablaCargos.bkp";
 const char *FILE_SUELDO_BRUTO = "SueldoBruto.dat";
 const char *FILE_SUELDO_BRUTO_BKP = "SueldoBruto.bkp";
 #include "clsDomicilio.h"
@@ -108,8 +108,8 @@ int main(){
                     system("cls");
                     break;
             case 6:
-                    if(cargarCargo()==true){cout<<"SE CARGARON LOS DESCUENTOS."<<endl;}
-                    else{cout<<"NO SE LOGRO REGISTRAR LOS DESCUENTOS."<<endl;}
+                    if(cargarCargo()==true){cout<<"SE CARGARON LOS CARGOS."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR LOS CARGOS."<<endl;}
                     system("pause>nul");
                     system("cls");
                     break;

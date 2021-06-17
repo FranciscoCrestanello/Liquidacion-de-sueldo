@@ -69,3 +69,36 @@
 
 1623612012 c:\users\crest\desktop\liquidación de sueldos\clscargo.h
 
+1623869101 source:c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<stdio.h>
+	"clsDomicilio.h"
+	"clsFecha.h"
+	"clsEmpleado.h"
+	"clsDescuentos.h"
+	"clsCargo.h"
+	"clsPreLiquidacion.h"
+	"clsLiquidacion.h"
+	"clsSueldoBruto.h"
+	"funciones.h"
+
+1623695726 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clsdomicilio.h
+
+1623870502 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clsfecha.h
+
+1623870858 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clsempleado.h
+
+1623695726 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clsdescuentos.h
+
+1623872121 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clscargo.h
+
+1623695726 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clspreliquidacion.h
+
+1623695726 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clsliquidacion.h
+
+1623695726 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\clssueldobruto.h
+
+1623871106 c:\users\crest\desktop\liquidación de sueldos\liquidacion-de-sueldo-main\liquidación de sueldos\funciones.h
+

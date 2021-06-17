@@ -33,7 +33,7 @@ void Fecha::cargar(){
 
     cout << "ANIO: ";
     cin >> aux;
-    if(aux >= 1900){setAnio(aux);}
+    if(aux >= 1900&&aux<=2021){setAnio(aux);}
     else{setAnio(-1);}
 }
 

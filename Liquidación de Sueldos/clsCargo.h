@@ -1,10 +1,11 @@
 #ifndef CLSCARGO_H_INCLUDED
 #define CLSCARGO_H_INCLUDED
-
+int contadorDeCargos();
 class Cargo{
     private:
         int cargo;
         float sBasico,antiguedad,asisYPunt,plusFeriado;
+        char nombreCargo[25];
     public:
         // sets
         void setCargo(int x){cargo=x;}
@@ -12,12 +13,14 @@ class Cargo{
         void setAntiguedad(float x){antiguedad=x;}
         void setAsisYPunt(float x){asisYPunt=x;}
         void setPlusFeriado(float x){plusFeriado=x;}
+        void setNombreCargo(const char *x){strcpy(nombreCargo,x);}
         // gets
         int getCargo(){return cargo;}
         float getSueldoBasico(){return sBasico;}
         float getAntiguedad(){return antiguedad;}
         float getAsisYPunt(){return asisYPunt;}
         float getPlusFeriado(){return plusFeriado;}
+        const char *getNombreCargo(){return nombreCargo;}
         // mostrar y cargar
         void cargar();
         void mostrar();
@@ -27,31 +30,40 @@ class Cargo{
 };
 
 void Cargo::cargar(){
-    cout<<"CARGO: ";
-    cin>>cargo;
-    cout<<"SUELDO BASICO: $";
+    int auxCargo=contadorDeCargos()+1;
+    if(auxCargo==0)auxCargo++;
+    setCargo(auxCargo);
+    cout<<"CARGO: "<<cargo<<endl;
+    cout<<"NOMBRE DEL CARGO: ";
+    cin>>nombreCargo;
+    cout<<"SUELDO BASICO: $ ";
     cin>>sBasico;
-    cout<<"ANTIGUEDAD: ";
+    while(sBasico<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nSUELDO BASICO: $ ";cin>>sBasico;}
+    cout<<"ANTIGUEDAD: % ";
     cin>>antiguedad;
-    cout<<"ASISTENCIA Y PUNTUALIDAD: ";
+    while(antiguedad<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nANTIGUEDAD: % ";cin>>antiguedad;}
+    cout<<"ASISTENCIA Y PUNTUALIDAD: % ";
     cin>>asisYPunt;
-    cout<<"PLUS FERIADO: ";
+    while(asisYPunt<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nASISTENCIA Y PUNTUALIDAD: % ";cin>>asisYPunt;}
+    cout<<"PLUS FERIADO: % ";
     cin>>plusFeriado;
+    while(plusFeriado<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nPLUS FERIADO: % ";cin>>plusFeriado;}
     cout<<endl;
 }
 
 void Cargo::mostrar(){
     cout<<"CARGO: "<<cargo<<endl;
-    cout<<"SUELDO BASICO: $"<<sBasico<<endl;
-    cout<<"ANTIGUEDAD: "<<antiguedad<<endl;
-    cout<<"ASISTENCIA Y PUNTUALIDAD: "<<asisYPunt<<endl;
-    cout<<"PLUS FERIADO: "<<plusFeriado<<endl<<endl;
+    cout<<"NOMBRE DEL CARGO: "<<nombreCargo<<endl;
+    cout<<"SUELDO BASICO: $ "<<sBasico<<endl;
+    cout<<"ANTIGUEDAD: % "<<antiguedad<<endl;
+    cout<<"ASISTENCIA Y PUNTUALIDAD: % "<<asisYPunt<<endl;
+    cout<<"PLUS FERIADO: % "<<plusFeriado<<endl<<endl;
 }
 
 bool Cargo::grabarEnDisco(){
     FILE *p;
     bool escribio;
-    p=fopen(FILE_TABLA_REMUN,"ab");
+    p=fopen(FILE_TABLA_CARGO,"ab");
     if(p==NULL)return false;
     escribio=fwrite(this,sizeof(Cargo),1,p);
     fclose(p);
@@ -60,7 +72,7 @@ bool Cargo::grabarEnDisco(){
 bool Cargo::leerDeDisco(int pos){
     FILE *p;
     bool leyo;
-    p=fopen(FILE_TABLA_REMUN, "rb");
+    p=fopen(FILE_TABLA_CARGO, "rb");
     if(p==NULL)return false;
     fseek(p,pos*sizeof(Cargo),0);
     leyo = fread(this,sizeof(Cargo),1,p);
