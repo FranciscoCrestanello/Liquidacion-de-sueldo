@@ -1,6 +1,7 @@
 #ifndef CLSCARGO_H_INCLUDED
 #define CLSCARGO_H_INCLUDED
 int contadorDeCargos();
+void cargarCadena(char *pal, int tam);
 class Cargo{
     private:
         int cargo;
@@ -35,7 +36,7 @@ void Cargo::cargar(){
     setCargo(auxCargo);
     cout<<"CARGO: "<<cargo<<endl;
     cout<<"NOMBRE DEL CARGO: ";
-    cin>>nombreCargo;
+    cargarCadena(nombreCargo, 24);
     cout<<"SUELDO BASICO: $ ";
     cin>>sBasico;
     while(sBasico<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nSUELDO BASICO: $ ";cin>>sBasico;}

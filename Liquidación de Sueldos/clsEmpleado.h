@@ -1,6 +1,6 @@
 #ifndef CLSEMPLEADO_H_INCLUDED
 #define CLSEMPLEADO_H_INCLUDED
-
+void cargarCadena(char *pal, int tam);
 class Empleado{
 	private:
 	char nombre[25],apellido[25],email[35];
@@ -41,9 +41,9 @@ public:
 
 void Empleado::cargar(){
     cout<<"NOMBRE: ";
-    cin>>nombre;
+    cargarCadena(nombre, 24);
     cout<<"APELLIDO: ";
-    cin>>apellido;
+    cargarCadena(apellido, 24);
     cout<<"EMAIL: ";
     cin>>email;
     cout<<"FECHA DE NACIMIENTO ";
@@ -60,27 +60,35 @@ void Empleado::cargar(){
     }
     cout<<"TELEFONO: ";
     cin>>telefono;
-    while(telefono<0){
+    while(telefono<1){
         cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: \nTelefono: ";
         cin>>telefono;
     }
     cout<<"DNI: ";
     cin>>dni;
-    while(dni<0){
+    while(dni<1){
         cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: \nDNI: ";
         cin>>dni;
     }
-    int pos=0;
-    Cargo reg;
     cout<<"CARGO: ";
-    cin>>cargo;                                                      //// EN LA VALIDACION DE CARGO ME QUEDE
-    while(reg.leerDeDisco(pos++)==false){
-        cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: \nDNI: ";
-        cin>>dni;
-        pos=0;
+    cin>>cargo;
+    int x,cant=contadorDeCargos();
+    Cargo reg;
+    bool cargoEncontrado=false;
+    while(cargoEncontrado==false){
+        for(x=0;x<cant;x++){
+            reg.leerDeDisco(x);
+            if(reg.getCargo()==cargo){
+                cargoEncontrado=true;
+                sueldo=reg.getSueldoBasico();
+            }
+        }
+        if(cargoEncontrado==false){
+            cout<<"EL CARGO NO EXISTE. INTENTE DE NUEVO: \nCARGO: ";
+            cin>>cargo;
+        }
     }
-    cout<<"SUELDO: $";
-    cin>>sueldo;
+    cout<<"SUELDO: $"<<sueldo<<endl;
     domicilio.cargar();
     setEstado(1);
     cout<<"ESTADO: "<<estado<<endl;

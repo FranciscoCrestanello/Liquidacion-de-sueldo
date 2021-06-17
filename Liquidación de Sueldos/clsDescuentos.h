@@ -26,25 +26,25 @@ class Descuentos{
 };
 
 void Descuentos::cargar(){
-    cout<<"JUBILACION: ";
+    cout<<"JUBILACION: % ";
     cin>>jubilacion;
-    cout<<"LEY 19032: ";
+    cout<<"LEY 19032: % ";
     cin>>ley19032;
-    cout<<"OBRA SOCIAL: ";
+    cout<<"OBRA SOCIAL: % ";
     cin>>obraSocial;
-    cout<<"SEC: ";
+    cout<<"SEC: % ";
     cin>>SEC;
-    cout<<"FAEC: ";
+    cout<<"FAEC: % ";
     cin>>FAEC;
     cout<<endl;
 }
 
 void Descuentos::mostrar(){
-    cout<<"JUBILACION: "<<jubilacion<<endl;
-    cout<<"LEY 19032: "<<ley19032<<endl;
-    cout<<"OBRA SOCIAL: "<<obraSocial<<endl;
-    cout<<"SEC: "<<SEC<<endl;
-    cout<<"FAEC: "<<FAEC<<endl<<endl;
+    cout<<"JUBILACION: "<<jubilacion<<"%"<<endl;
+    cout<<"LEY 19032: "<<ley19032<<"%"<<endl;
+    cout<<"OBRA SOCIAL: "<<obraSocial<<"%"<<endl;
+    cout<<"SEC: "<<SEC<<"%"<<endl;
+    cout<<"FAEC: "<<FAEC<<"%"<<endl<<endl;
 }
 
 bool Descuentos::grabarEnDisco(){

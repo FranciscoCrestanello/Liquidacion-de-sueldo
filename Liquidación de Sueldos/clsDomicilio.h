@@ -1,6 +1,6 @@
 #ifndef CLSDOMICILIO_H_INCLUDED
 #define CLSDOMICILIO_H_INCLUDED
-
+void cargarCadena(char *pal, int tam);
 class Domicilio{
     private:
         int numero;
@@ -21,15 +21,16 @@ class Domicilio{
 };
 
 void Domicilio::cargar(){
-    int aux;
     cout<<"LOCALIDAD: ";
-    cin>>localidad;
+    cargarCadena(localidad, 29);
     cout<<"CALLE: ";
-    cin>>calle;
+    cargarCadena(calle, 29);
     cout<<"NUMERO: ";
-    cin>> aux;
-    if(aux>0)setNumero(aux);
-    else{setNumero(-1);}
+    cin>> numero;
+    while(numero<1){
+        cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. INTENTE DE NUEVO: "<<endl;
+        cin>>numero;
+    }
 }
 
 void Domicilio::mostrar(){

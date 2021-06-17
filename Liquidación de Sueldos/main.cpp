@@ -1,7 +1,7 @@
 # include<iostream>
 # include<cstdlib>
 # include<cstring>
-#include <stdio.h>
+# include<stdio.h>
 using namespace std;
 const char *FILE_EMPLEADOS = "Empleados.dat";
 const char *FILE_EMPLEADOS_BKP = "Empleados.bkp";
@@ -17,9 +17,9 @@ const char *FILE_SUELDO_BRUTO = "SueldoBruto.dat";
 const char *FILE_SUELDO_BRUTO_BKP = "SueldoBruto.bkp";
 #include "clsDomicilio.h"
 #include "clsFecha.h"
-#include "clsEmpleado.h"
-#include "clsDescuentos.h"
 #include "clsCargo.h"
+#include "clsDescuentos.h"
+#include "clsEmpleado.h"
 #include "clsPreLiquidacion.h"
 #include "clsLiquidacion.h"
 #include "clsSueldoBruto.h"

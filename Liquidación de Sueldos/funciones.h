@@ -28,6 +28,8 @@ bool cargarCargo(); // AGREGA UN CARGO.
 
 bool mostrarCargos(); // MUESTRA TODOS LOS CARGOS.
 
+void cargarCadena(char *pal, int tam); //CARGA MAS DE 1 O MAS NOMBRES
+
 ////////// FIN DE LOS PROTOTIPOS //////////
 
 bool cargarEmpleado(){
@@ -153,6 +155,17 @@ bool mostrarCargos(){
         leyo=true;
     }
     return leyo;
+}
+
+void cargarCadena(char *pal, int tam){
+  int i;
+  fflush(stdin);
+  for(i=0;i<tam;i++){
+      pal[i]=cin.get();
+	  if(pal[i]=='\n') break;
+	  }
+  pal[i]='\0';
+  fflush(stdin);
 }
 
 #endif // FUNCIONES_H_INCLUDED
