@@ -1,6 +1,12 @@
 #ifndef CLSLIQUIDACION_H_INCLUDED
 #define CLSLIQUIDACION_H_INCLUDED
 
+bool generarliquidacion();
+bool buscarEmpleado(int);
+int buscarPreliq(int);
+int calcularAntiguedad(int);
+int calcularAnios(Fecha,Fecha);
+
 class Liquidacion{
 	private:
         Fecha periodoLiquidacion;
@@ -9,6 +15,7 @@ class Liquidacion{
         float obraSocial,ley19032,SEC,FAEC;
 	public:
         // sets
+        void setFecha(Fecha f){periodoLiquidacion=f;}
         void setDni(int x){dni=x;}
         void setSueldo(float x){sueldo=x;}
         void setAntiguedad(float x){antiguedad=x;}
@@ -97,6 +104,73 @@ bool Liquidacion::leerDeDisco(int pos){
     leyo = fread(this,sizeof(Liquidacion),1,p);
     fclose(p);
     return leyo;
+}
+
+bool buscarEmpleado(int dni){
+    Empleado reg;
+    int pos=0;
+    while(reg.leerEnDisco(pos++)==true){
+        if(reg.getDni()==dni){
+            return true;
+        }
+    }
+    return false;
+}
+
+int buscarPreliq(int dni){
+    PreLiquidacion reg;
+    int pos=0;
+    while(reg.leerDeDisco(pos)==true){
+        if (reg.getDni()==dni){
+            return pos;
+        }
+        pos++;
+    }
+}
+
+/// CALCULAR ANTIGUEDAD
+
+int calcularAnios(Fecha obj1, Fecha obj2){
+    int anios;
+    anios = obj1.getAnio() - obj2.getAnio();
+
+    if ( (obj1.getMes() < obj2.getMes() ) || ( ( obj1.getMes() == obj2.getMes() ) && (obj1.getDia()<obj2.getDia() ))){
+            anios--;
+        }
+    return anios;
+}
+
+/*
+int calcularAntiguedad(dni){
+    Empleado reg;
+    int anios;
+    int pos=0;
+    while(reg.leerEnDisco(pos++)==true){
+        if(reg.getDni())==dni){
+           anios = calcularAnios()// BUSCAR MANERA DE ASIGNAR FECHA ACTUAL.
+        }
+    }
+}
+*/
+
+bool generarliquidacion(){
+    int dni,pos;
+    Liquidacion obj;
+    PreLiquidacion reg;
+
+    cout<<"INTRODUZCA EL DNI DEL EMPLEADO: ";
+    cin>>dni;
+
+    if (buscarEmpleado(dni) == false){
+        cout<<"NO EXISTE EL DNI DEL EMPLEADO";
+        return false;
+        }
+    pos = buscarPreliq(dni);
+    /*
+    obj.setFecha();
+    obj.setDni();
+    obj.setSueldo();*/
+
 }
 
 #endif // CLSLIQUIDACION_H_INCLUDED

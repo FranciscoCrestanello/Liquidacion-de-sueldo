@@ -5,7 +5,7 @@ class Empleado{
 	private:
 	char nombre[25],apellido[25],email[35];
 	Fecha fechaDeNacimiento;
-	Fecha ingreso;
+	Fecha fechaIngreso;
 	Domicilio domicilio;
 	int telefono, dni, cargo;
     float sueldo;
@@ -15,6 +15,7 @@ public:
 	void setNombre(const char *x){strcpy(nombre,x);}
 	void setApellido(const char *x){strcpy(apellido,x);}
 	void setEmail(const char *x){strcpy(email,x);}
+	void setFechaIngreso(Fecha i){fechaIngreso=i;}
 	void setTelefono(int x){telefono=x;}
 	void setDni(int x){dni=x;}
 	void setCargo(int x){cargo=x;}
@@ -24,6 +25,7 @@ public:
     const char *getNombre(){return nombre;}
     const char *getApellido(){return apellido;}
     const char *getEmail(){return email;}
+    Fecha getFechaIngreso(){return fechaIngreso;}
     Fecha getFecha(){return fechaDeNacimiento;}
     Domicilio getDomicilio(){return domicilio;}
     int getTelefono(){return telefono;}
@@ -37,6 +39,8 @@ public:
     //Leer y grabar Empleado
 	bool grabarEnDisco();
 	bool leerEnDisco(int );
+	/// leer registro especifico
+	Empleado leerEmpleado(int);
 };
 
 void Empleado::cargar(){
@@ -53,10 +57,10 @@ void Empleado::cargar(){
         fechaDeNacimiento.cargar();
     }
     cout<<"FECHA DE INGRESO: ";
-    ingreso.cargar();
-    while(ingreso.getAnio()==-1||ingreso.getMes()==-1||ingreso.getDia()==-1){
+    fechaIngreso.cargar();
+    while(fechaIngreso.getAnio()==-1||fechaIngreso.getMes()==-1||fechaIngreso.getDia()==-1){
         cout<<"FECHA INCORRECTA. INGRESE UNA FECHA VALIDA: ";
-        ingreso.cargar();
+        fechaIngreso.cargar();
     }
     cout<<"TELEFONO: ";
     cin>>telefono;
@@ -100,7 +104,7 @@ void Empleado::mostrar(){
     cout<<"FECHA DE NACIMIENTO: ";
     fechaDeNacimiento.mostrar();
     cout<<"FECHA DE INGRESO: ";
-    ingreso.mostrar();
+    fechaIngreso.mostrar();
     domicilio.mostrar();
     cout<<"TELEFONO: "<<telefono<<endl;
     cout<<"DNI: "<<dni<<endl;
@@ -129,4 +133,14 @@ bool Empleado::leerEnDisco(int pos){
     return leyo;
 }
 
+Empleado leerEmpleado(int pos){
+    Empleado reg;
+    FILE *P;
+    P=fopen(FILE_EMPLEADOS,"rb");
+    if(P==NULL){return reg;}
+    fseek(P, pos*sizeof reg, 0);
+    fread(&reg,sizeof reg,1,P);
+    fclose(P);
+    return reg;
+}
 #endif // CLSEMPLEADO_H_INCLUDED

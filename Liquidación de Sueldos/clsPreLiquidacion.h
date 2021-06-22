@@ -1,6 +1,8 @@
 #ifndef CLSPRELIQUIDACION_H_INCLUDED
 #define CLSPRELIQUIDACION_H_INCLUDED
 
+bool validacionDni(int);
+
 class PreLiquidacion{
 	private:
         Fecha periodoLiquidacion;
@@ -9,9 +11,21 @@ class PreLiquidacion{
         bool presentismo,puntualidad;
 	public:
         //sets
-        void setDni(int x){dni=x;}
+         void setDni(int x){
+            while(!validacionDni(x)){
+                cout<<"El DNI NO EXISTE EN EL SISTEMA"<<endl;
+                cout<<"INGRESE OTRO NUMERO: ";
+                cin>>x;
+            }
+            dni=x;}
         void setFeriados(int x){feriados=x;}
-        void setHorasTrabajadas(float x){horasTrabajadas=x;}
+        void setHorasTrabajadas(float x){
+            while( !(x>0 && x<200) ){
+                cout<<"CANTIDAD DE HORAS NO VALIDAS"<<endl;
+                cout<<"INGRESE LA CANTIDAD DE HORAS NUEVAMENTE: ";
+                cin>>x;
+            }
+            horasTrabajadas=x;}
         void setPresentismo(bool x){presentismo=x;}
         void setPuntualidad(bool x){puntualidad=x;}
         //gets
@@ -28,6 +42,17 @@ class PreLiquidacion{
         bool grabarEnDisco();
         bool leerDeDisco(int );
 };
+
+bool validacionDni(int _dni){
+    Empleado reg;
+    int pos=0;
+    while(reg.leerEnDisco(pos++)==true){
+        if(reg.getDni()==_dni){
+            return true;
+        }
+    }
+    return false;
+}
 
 void PreLiquidacion::cargar(){
     cout<<"PERIODO DE LIQUIDACION: "<<endl;

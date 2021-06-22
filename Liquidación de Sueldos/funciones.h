@@ -30,7 +30,16 @@ bool mostrarCargos(); // MUESTRA TODOS LOS CARGOS.
 
 void cargarCadena(char *pal, int tam); //CARGA MAS DE 1 O MAS NOMBRES
 
+int MenuEmpleado();
+
+int MenuPreliquidacion();
+
+int MenuLiquidacion();
+
+int MenuConfiguracion();
+
 ////////// FIN DE LOS PROTOTIPOS //////////
+
 
 bool cargarEmpleado(){
     Empleado reg;
@@ -166,6 +175,181 @@ void cargarCadena(char *pal, int tam){
 	  }
   pal[i]='\0';
   fflush(stdin);
+}
+
+int MenuEmpleado(){
+    int opc;
+    while(true){
+        system("cls");
+        cout<<"MENÚ EMPLEADO"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<endl;
+        cout<<"1) AGREGAR EMPLEADO "<<endl;
+        cout<<"2) MOSTRAR EMPLEADO"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<"INGRESE OPCION: ";
+        cin>>opc;
+        switch(opc){
+            case 1: system("cls");
+                    if(cargarEmpleado()==true){cout<<"REGISTRO EXITOSO."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR AL CLIENTE."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+                    system("pause");
+                break;
+            case 2: system("cls");
+                    if(mostrarEmpleados()==true){cout<<"SE LEYO EL ARCHIVO."<<endl;}
+                    else{cout<<"NO SE LOGRO LEER EL ARCHIVO."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+                    system("pause");
+                break;
+            case 0: return 0;
+                break;
+        }
+    }
+}
+
+int MenuPreliquidacion(){
+    int opc;
+    while(true){
+        system("cls");
+        cout<<"MENÚ PRELIQUIDACION"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<endl;
+        cout<<" 1) CARGAR PRE LIQUIDACION"<<endl;
+        cout<<" 2) MOSTRAR PRE LIQUIDACIONES"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<"INGRESE OPCION: ";
+        cin>>opc;
+        switch(opc){
+            case 1: system("cls");
+                    if(cargarPreLiquidacion()==true){cout<<"SE CARGO LA PRE LIQUIDACION."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR LA PRE LIQUIDACION."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+                    system("pause");
+                break;
+            case 2: system("cls");
+                    if(mostrarPreLiquidaciones()==true){cout<<"SE LEYO EL ARCHIVO."<<endl;}
+                    else{cout<<"NO SE LOGRO LEER EL ARCHIVO."<<endl;}
+                    system("pause>nul");
+                    break;
+                    system("pause");
+                break;
+            case 0: return 0;
+                break;
+        }
+    }
+}
+
+int MenuLiquidacion(){
+    int opc;
+    while(true){
+        system("cls");
+        cout<<"MENÚ PRELIQUIDACION"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<endl;
+        cout<<" 1) CARGAR LIQUIDACION"<<endl;
+        cout<<" 2) MOSTRAR LIQUIDACIONES"<<endl;
+        cout<<" 3) GENERAR LIQUIDACION POR DNI"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<"INGRESE OPCION: ";
+        cin>>opc;
+        switch(opc){
+            case 1: system("cls");
+                    if(cargarLiquidacion()==true){cout<<"SE CARGO LA LIQUIDACION."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR LA LIQUIDACION."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+                    system("pause");
+                break;
+            case 2: system("cls");
+                    if(mostrarLiquidaciones()==true){cout<<"SE LEYO EL ARCHIVO."<<endl;}
+                    else{cout<<"NO SE LOGRO LEER EL ARCHIVO."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    system("pause");
+                break;
+            case 3: system("cls");
+                    if(generarliquidacion()==true){
+                        cout<<"SE GENERO LA LIQUIDACION CON EXITO"<<endl;
+                    }else{
+                        cout<<"NO SE HA PODIDO GENERAR LA LIQUIDACION"<<endl;
+                    }
+                    system("pause");
+                break;
+            case 0: return 0;
+                    break;
+        }
+    }
+}
+
+int MenuConfiguracion(){
+    int opc;
+    while(true){
+        system("cls");
+        cout<<"MENÚ PRELIQUIDACION"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<endl;
+        cout<<" 4) CARGAR SUELDO BRUTO"<<endl;
+        cout<<" 44) MOSTRAR SUELDOS BRUTOS"<<endl;
+        cout<<" 5) CARGAR DESCUENTOS"<<endl;
+        cout<<" 55) MOSTRAR DESCUENTOS"<<endl;
+        cout<<" 6) CARGAR CARGO"<<endl;
+        cout<<" 66) MOSTRAR CARGOS"<<endl;
+        cout<<"---------------------"<<endl;
+        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<"INGRESE OPCION: ";
+        cin>>opc;
+        switch(opc){
+            case 4:
+                    if(cargarSueldoBruto()==true){cout<<"SE CARGO EL SUELDO BRUTO."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR EL SUELDO BRUTO."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+            case 44:
+                    if(mostrarSueldosBrutos()==true){cout<<"SE LEYO EL ARCHIVO."<<endl;}
+                    else{cout<<"NO SE LOGRO LEER EL ARCHIVO."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+            case 5:
+                    if(cargarDescuentos()==true){cout<<"SE CARGARON LOS DESCUENTOS."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR LOS DESCUENTOS."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+            case 55:
+                    if(mostrarDescuentos()==true){cout<<"SE LEYO EL ARCHIVO."<<endl;}
+                    else{cout<<"NO SE LOGRO LEER EL ARCHIVO."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+            case 6:
+                    if(cargarCargo()==true){cout<<"SE CARGARON LOS CARGOS."<<endl;}
+                    else{cout<<"NO SE LOGRO REGISTRAR LOS CARGOS."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+            case 66:
+                    if(mostrarCargos()==true){cout<<"SE LEYO EL ARCHIVO."<<endl;}
+                    else{cout<<"NO SE LOGRO LEER EL ARCHIVO."<<endl;}
+                    system("pause>nul");
+                    system("cls");
+                    break;
+            case 0: return 0;
+                    break;
+        }
+    }
 }
 
 #endif // FUNCIONES_H_INCLUDED
