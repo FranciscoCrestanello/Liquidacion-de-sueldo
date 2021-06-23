@@ -2,6 +2,7 @@
 # include<cstdlib>
 # include<cstring>
 # include<stdio.h>
+#include<ctime>
 using namespace std;
 const char *FILE_EMPLEADOS = "Empleados.dat";
 const char *FILE_EMPLEADOS_BKP = "Empleados.bkp";
@@ -30,11 +31,11 @@ int main(){
     while(opc!=0){
         system("cls");
         cout<<"----- MENU PRINCIPAL -----"<<endl;
-        cout<<"1)MENU EMPLEADOS"<<endl;
-        cout<<"2)MENU PRELIQUIDACIONES"<<endl;
-        cout<<"3)MENU LIQUIDACIONES"<<endl;
-        cout<<"4)CONFIGURACIONES"<<endl;
-        cout<<"0) SALIR DEL PROGRAMA"<<endl;
+        cout<<" 1) MENU EMPLEADOS"<<endl;
+        cout<<" 2) MENU PRELIQUIDACIONES"<<endl;
+        cout<<" 3) MENU LIQUIDACIONES"<<endl;
+        cout<<" 4) CONFIGURACIONES"<<endl;
+        cout<<" 0) SALIR DEL PROGRAMA"<<endl;
         cout<<"--------------------------"<<endl;
         cout<<"OPCION: ";
         cin>>opc;

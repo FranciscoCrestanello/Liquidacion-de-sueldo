@@ -5,21 +5,23 @@ void cargarCadena(char *pal, int tam);
 class Cargo{
     private:
         int cargo;
-        float sBasico,antiguedad,asisYPunt,plusFeriado;
+        float sBasico,antiguedad,asistencia,puntualidad,plusFeriado;
         char nombreCargo[25];
     public:
         // sets
         void setCargo(int x){cargo=x;}
         void setSueldoBasico(float x){sBasico=x;}
         void setAntiguedad(float x){antiguedad=x;}
-        void setAsisYPunt(float x){asisYPunt=x;}
+        void setAsisistencia(float x){asistencia=x;}
+        void setPuntualidad(float x){puntualidad=x;}
         void setPlusFeriado(float x){plusFeriado=x;}
         void setNombreCargo(const char *x){strcpy(nombreCargo,x);}
         // gets
         int getCargo(){return cargo;}
         float getSueldoBasico(){return sBasico;}
         float getAntiguedad(){return antiguedad;}
-        float getAsisYPunt(){return asisYPunt;}
+        float getAsisistencia(){return asistencia;}
+        float getPuntualidad(){return puntualidad;}
         float getPlusFeriado(){return plusFeriado;}
         const char *getNombreCargo(){return nombreCargo;}
         // mostrar y cargar
@@ -43,9 +45,12 @@ void Cargo::cargar(){
     cout<<"ANTIGUEDAD: % ";
     cin>>antiguedad;
     while(antiguedad<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nANTIGUEDAD: % ";cin>>antiguedad;}
-    cout<<"ASISTENCIA Y PUNTUALIDAD: % ";
-    cin>>asisYPunt;
-    while(asisYPunt<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nASISTENCIA Y PUNTUALIDAD: % ";cin>>asisYPunt;}
+    cout<<"ASISTENCIA: % ";
+    cin>>asistencia;
+    while(asistencia<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nASISTENCIA: % ";cin>>asistencia;}
+    cout<<"PUNTUALIDAD: % ";
+    cin>>puntualidad;
+    while(puntualidad<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nASISTENCIA Y PUNTUALIDAD: % ";cin>>puntualidad;}
     cout<<"PLUS FERIADO: % ";
     cin>>plusFeriado;
     while(plusFeriado<0){cout<<"NO SE PERMITEN NUMEROS NEGATIVOS. \nPLUS FERIADO: % ";cin>>plusFeriado;}
@@ -57,7 +62,8 @@ void Cargo::mostrar(){
     cout<<"NOMBRE DEL CARGO: "<<nombreCargo<<endl;
     cout<<"SUELDO BASICO: $ "<<sBasico<<endl;
     cout<<"ANTIGUEDAD: % "<<antiguedad<<endl;
-    cout<<"ASISTENCIA Y PUNTUALIDAD: % "<<asisYPunt<<endl;
+    cout<<"ASISTENCIA: % "<<asistencia<<endl;
+    cout<<"PUNTUALIDAD: % "<<puntualidad<<endl;
     cout<<"PLUS FERIADO: % "<<plusFeriado<<endl<<endl;
 }
 

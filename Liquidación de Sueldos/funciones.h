@@ -181,7 +181,7 @@ int MenuEmpleado(){
     int opc;
     while(true){
         system("cls");
-        cout<<"MENÚ EMPLEADO"<<endl;
+        cout<<"MENU EMPLEADO"<<endl;
         cout<<"---------------------"<<endl;
         cout<<endl;
         cout<<"1) AGREGAR EMPLEADO "<<endl;
