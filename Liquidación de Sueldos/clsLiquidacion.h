@@ -224,13 +224,12 @@ void Liquidacion::cargarAutomatico(){
                     sueldo=empleado.getSueldo();
                     while(cargo.leerDeDisco(posCargo++)){
                         if(cargo.getCargo()==empleado.getCargo()){
-                        antiguedad=((cargo.getAntiguedad()/100)*empleado.getSueldo())*calcularAntiguedad(empleado.getDni()); // FALTA DEFINIR LOS PORCENTAJES SEGUN LOS AÑOS PARA PODER DEFINIR LA ANTIGUEDAD
-                        cout<<"calcular antiguedad: "<<calcularAntiguedad(empleado.getDni());
+                        antiguedad=((cargo.getAntiguedad()/100)*empleado.getSueldo())*calcularAntiguedad(empleado.getDni());
                         if(preLiq.getPresentismo()==true)asistencia=(cargo.getAsisistencia()*empleado.getSueldo())/100;
                         else{asistencia=0;}
                         if(preLiq.getPuntualidad()==true)puntualidad=(cargo.getPuntualidad()*empleado.getSueldo())/100;
                         else{puntualidad=0;}
-                        feriado=preLiq.getFeriados()*((cargo.getPlusFeriado()/100)*empleado.getSueldo());  //HAY QUE MIRAR COMO VAMOS A DEFINIR LOS FERIADOS
+                        feriado=preLiq.getFeriados()*((cargo.getPlusFeriado()/100)*empleado.getSueldo());
                         sueldoBRUTO=empleado.getSueldo()+asistencia+puntualidad+antiguedad+feriado;
                         sueldoBASICO=empleado.getSueldo();
                         }
