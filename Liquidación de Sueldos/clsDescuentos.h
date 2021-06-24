@@ -26,6 +26,7 @@ class Descuentos{
 };
 
 void Descuentos::cargar(){
+    system("cls");
     cout<<"JUBILACION: % ";
     cin>>jubilacion;
     cout<<"LEY 19032: % ";

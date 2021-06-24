@@ -33,6 +33,7 @@ class Cargo{
 };
 
 void Cargo::cargar(){
+    system("cls");
     int auxCargo=contadorDeCargos()+1;
     if(auxCargo==0)auxCargo++;
     setCargo(auxCargo);

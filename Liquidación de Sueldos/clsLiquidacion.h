@@ -81,17 +81,18 @@ void Liquidacion::mostrarL(){
     getFecha().mostrar();
     cout<<"DNI: "<<dni<<endl;
     cout<<"SUELDO: $"<<sueldo<<endl;
-    cout<<"ANTIGUEDAD: "<<antiguedad<<endl;
-    cout<<"ASISTENCIA: "<<asistencia<<endl;
-    cout<<"PUNTUALIDAD: "<<puntualidad<<endl;
-    cout<<"FERIADO: "<<feriado<<endl;
-    cout<<"JUBILACION: "<<jubilacion<<endl;
-    cout<<"OBRA SOCIAL: "<<obraSocial<<endl;
-    cout<<"LEY 19032: "<<ley19032<<endl;
-    cout<<"SEC: "<<SEC<<endl;
-    cout<<"FAEC: "<<FAEC<<endl<<endl;
+    cout<<"ANTIGUEDAD: $"<<antiguedad<<endl;
+    cout<<"ASISTENCIA: $"<<asistencia<<endl;
+    cout<<"PUNTUALIDAD: $"<<puntualidad<<endl;
+    cout<<"FERIADO: $"<<feriado<<endl;
+    cout<<"JUBILACION: $"<<jubilacion<<endl;
+    cout<<"OBRA SOCIAL: $"<<obraSocial<<endl;
+    cout<<"LEY 19032: $"<<ley19032<<endl;
+    cout<<"SEC: $"<<SEC<<endl;
+    cout<<"FAEC: $"<<FAEC<<endl<<endl;
     cout<<"SUELDO BRUTO: $: "<<sueldoBRUTO<<endl;
     cout<<"SUELDO NETO: $: "<<sueldoNETO<<endl<<endl;
+    cout<<"-----------------------------------"<<endl<<endl;
 }
 
 bool Liquidacion::grabarEnDisco(){
@@ -140,11 +141,16 @@ int buscarPreliq(int dni){
 
 int calcularAnios(Fecha obj1){
     int anios;
+    int anioAct, mesAct, diaAct;
     time_t t = time(0);
     tm* now = localtime(&t);
 
-    anios = obj1.getAnio() - (now->tm_year + 1900);
-    if ( (obj1.getMes() < (now->tm_mon + 1) ) || ( ( obj1.getMes() == (now->tm_mon + 1) ) && (obj1.getDia()< (now->tm_mday) ))){
+    anioAct=(now->tm_year + 1900);
+    mesAct= (now->tm_mon + 1);
+    diaAct= now->tm_mday;
+
+    anios = anioAct-obj1.getAnio();
+    if ( (obj1.getMes() < mesAct ) || ( ( obj1.getMes() == mesAct ) && (obj1.getDia()< diaAct ))){
             anios--;
     }
     return anios;
@@ -174,11 +180,10 @@ int calcularAntiguedad(dni){
 int calcularAntiguedad(int dni){
     Empleado reg;
     int pos=0,antiguedad;
-    bool control=false;
-    while(reg.leerEnDisco(pos++) && control==false){
+    while(reg.leerEnDisco(pos++)){
         if(reg.getDni()==dni){
             antiguedad=calcularAnios(reg.getFechaIngreso());
-            control=true;
+            return antiguedad;
         }
     }
 }
@@ -219,10 +224,13 @@ void Liquidacion::cargarAutomatico(){
                     sueldo=empleado.getSueldo();
                     while(cargo.leerDeDisco(posCargo++)){
                         if(cargo.getCargo()==empleado.getCargo()){
-                        //antiguedad=cargo.getAntiguedad()*calcularAntiguedad(empleado.getDni()); // FALTA DEFINIR LOS PORCENTAJES SEGUN LOS AÑOS PARA PODER DEFINIR LA ANTIGUEDAD
+                        antiguedad=((cargo.getAntiguedad()/100)*empleado.getSueldo())*calcularAntiguedad(empleado.getDni()); // FALTA DEFINIR LOS PORCENTAJES SEGUN LOS AÑOS PARA PODER DEFINIR LA ANTIGUEDAD
+                        cout<<"calcular antiguedad: "<<calcularAntiguedad(empleado.getDni());
                         if(preLiq.getPresentismo()==true)asistencia=(cargo.getAsisistencia()*empleado.getSueldo())/100;
+                        else{asistencia=0;}
                         if(preLiq.getPuntualidad()==true)puntualidad=(cargo.getPuntualidad()*empleado.getSueldo())/100;
-                        //if(preLiq.getFeriados); // HAY QUE MIRAR COMO VAMOS A DEFINIR LOS FERIADOS
+                        else{puntualidad=0;}
+                        feriado=preLiq.getFeriados()*((cargo.getPlusFeriado()/100)*empleado.getSueldo());  //HAY QUE MIRAR COMO VAMOS A DEFINIR LOS FERIADOS
                         sueldoBRUTO=empleado.getSueldo()+asistencia+puntualidad+antiguedad+feriado;
                         sueldoBASICO=empleado.getSueldo();
                         }
