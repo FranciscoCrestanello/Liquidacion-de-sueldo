@@ -282,7 +282,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1625593114 source:c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\main.cpp
+1625684548 source:c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\main.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -296,6 +296,7 @@
 	"clsEmpleado.h"
 	"clsPreLiquidacion.h"
 	"clsLiquidacion.h"
+	"rlutilFunciones.h"
 	"funciones.h"
 
 1625593114 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\rlutil.h
@@ -326,5 +327,7 @@
 
 1625593114 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsliquidacion.h
 
-1625603239 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\funciones.h
+1625686104 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\funciones.h
+
+1625681772 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldo v5.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\rlutilfunciones.h
 

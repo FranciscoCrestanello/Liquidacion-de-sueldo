@@ -1,5 +1,6 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
+
 ////////// COMIENZO DE LOS PROTOTIPOS //////////
 
 void cargarEmpleado(); //CARGA 1 EMPLEADO
@@ -28,7 +29,11 @@ void cargarCadena(char *pal, int tam); //CARGA MAS DE 1 O MAS NOMBRES
 
 int MenuEmpleado(); // MUESTRA EL MENU DE EMPLEADOS
 
+int menuModificacionesEmpleado();
+
 int MenuPreliquidacion(); // MUESTRA EL MENU DE PRELIQUIDACIONES
+
+int menuModificacionesPreLiquidaciones();
 
 int MenuLiquidacion(); // MUESTRA EL MENU DE LIQUIDACIONES
 
@@ -79,6 +84,8 @@ void modificarFechaDeIngreso(); // MODIFICA LA FECHA DE INGRESO DEL EMPLEADO
 void modificarCargo(); // MODIFICA EL CARGO DEL EMPLEADO
 
 void modificarDni(); // MODIFICA EL DNI DEL EMPLEADO
+
+void modificarPDLiquidacion();
 
 ////////// FIN DE LOS PROTOTIPOS //////////
 
@@ -183,70 +190,156 @@ void cargarCadena(char *pal, int tam){
 }
 
 int MenuEmpleado(){
-    int opc;
+    int POSMENUX=34,POSMENUY=9, ANCHO_MENU=37,ALTO_MENU=8;
+    int opc,cursorX,cursorY;
     while(true){
         system("cls");
-        cout<<"MENU EMPLEADO"<<endl;
-        cout<<"------------------------------------"<<endl;
-        cout<<" 1) AGREGAR EMPLEADO "<<endl;
-        cout<<" 2) MOSTRAR EMPLEADO"<<endl;
-        cout<<" 3) MODIFICAR NOMBRE DEL EMPLEADO."<<endl;
-        cout<<" 4) MODIFICAR APELLIDO DEL EMPLEADO."<<endl;
-        cout<<" 5) MODIFICAR MAIL DEL EMPLEADO."<<endl;
-        cout<<" 6) MODIFICAR DOMICILIO DE EMPLEADO."<<endl;
-        cout<<" 7) MODIFICAR TELEFONO DE EMPLEADO."<<endl;
-        cout<<" 8) MODIFICAR FECHA DE NACIMIENTO DE EMPLEADO."<<endl;
-        cout<<" 9) MODIFICAR FECHA DE INGRESO DE EMPLEADO."<<endl;
-        cout<<" 10) MODIFICAR CARGO DE EMPLEADO."<<endl;
-        cout<<" 11) MODIFICAR DNI DE EMPLEADO."<<endl;
-        cout<<" 12) DAR DE BAJA A UN EMPLEADO."<<endl;
-        cout<<"------------------------------------"<<endl;
-        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
-        cout<<"INGRESE OPCION: ";
-        cin>>opc;
-        system("cls");
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+13,POSMENUY+1);
+        cout<<"MENÚ EMPLEADO"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" AGREGAR EMPLEADO "<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" MOSTRAR EMPLEADO"<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" MODIFICAR CAMPOS DEL EMPLEADO."<<endl;
+        separadorH(POSMENUX,POSMENUY+6,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" VOLVER AL MENÚ PRINCIPAL"<<endl;
+
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,3,7);
+
         switch(opc){
             case 1:
                     cargarEmpleado();
                     system("pause>nul");
-                    system("cls");
                     break;
             case 2:
                     mostrarEmpleados();
                     system("pause>nul");
-                    system("cls");
                     break;
-            case 3:
+            case 3: menuModificacionesEmpleado();
+            case 0: return 0;
+                break;
+        }
+    }
+}
+
+int menuModificacionesEmpleado(){
+    int POSMENUX=28,POSMENUY=6, ANCHO_MENU=48,ALTO_MENU=15;
+    int opc=1,cursorX,cursorY;
+    while(true){
+        system("cls");
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+10,POSMENUY+1);
+        cout<<"MENÚ PARA MODIFICAR EMPLEADO"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" MODIFICAR NOMBRE DEL EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" MODIFICAR APELLIDO DEL EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" MODIFICAR MAIL DEL EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+6);
+        cout<<" MODIFICAR DOMICILIO DE EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" MODIFICAR TELEFONO DE EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+8);
+        cout<<" MODIFICAR FECHA DE NACIMIENTO DE EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+9);
+        cout<<" MODIFICAR FECHA DE INGRESO DE EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+10);
+        cout<<" MODIFICAR CARGO DE EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+11);
+        cout<<" MODIFICAR DNI DE EMPLEADO."<<endl;
+        locate(POSMENUX+4,POSMENUY+12);
+        cout<<" DAR DE BAJA A UN EMPLEADO."<<endl;
+        separadorH(POSMENUX,POSMENUY+13,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+14);
+        cout<<" VOLVER AL MENÚ PRINCIPAL."<<endl;
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,10,14);
+
+        switch(opc){
+            case 1:
                     modificarNombre();
                     break;
-            case 4:
+            case 2:
                     modificarApellido();
                     break;
-            case 5:
+            case 3:
                     modificarMail();
                     break;
-            case 6:
+            case 4:
                     if(modificarDomicilio()==true){cout<<"SE MODIFICO EL DOMICILIO."<<endl;}
                     else{cout<<"NO SE PUDO MODIFICAR EL DOMICILIO."<<endl;}
                     system("pause>nul");
                     system("cls");
                     break;
-            case 7:
+            case 5:
                     if(modificarTelefono()==true){cout<<"SE MODIFICO EL NUMERO DE TELEFONO."<<endl;}
                     else{cout<<"NO SE PUDO MODIFICAR EL NUMERO DE TELEFONO."<<endl;}
                     system("pause>nul");
                     system("cls");
                     break;
-            case 8: modificarFechaDeNacimiento();
+            case 6: modificarFechaDeNacimiento();
                 break;
-            case 9: modificarFechaDeIngreso();
+            case 7: modificarFechaDeIngreso();
                 break;
-            case 10: modificarCargo();
+            case 8: modificarCargo();
                 break;
-            case 11: modificarDni();
+            case 9: modificarDni();
                 break;
-            case 12: bajaLogicaEmpleado();
+            case 10: bajaLogicaEmpleado();
                 break;
+            case 0: return 0;
+                break;
+
+        }
+    }
+    return 0;
+}
+
+int menuModificacionesPreLiquidaciones(){
+    int POSMENUX=30,POSMENUY=8, ANCHO_MENU=40,ALTO_MENU=11;
+    int opc=1,cursorX,cursorY;
+    while(true){
+        system("cls");
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+6,POSMENUY+1);
+        cout<<"MENÚ MODIFICAR PRE LIQUIDACIÓN"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" MODIFICAR PERIODO DE LIQUIDACION"<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" MODIFICAR DNI"<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" MODIFICAR FERIADOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+6);
+        cout<<" MODIFICAR HORAS TRABAJADAS"<<endl;
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" MODIFICAR PRESENTISMO"<<endl;
+        locate(POSMENUX+4,POSMENUY+8);
+        cout<<" MODIFICAR PUNTUALIDAD"<<endl;
+        separadorH(POSMENUX,POSMENUY+9,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+10);
+        cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,6,10);
+        switch(opc){
+            case 1: modificarPDLiquidacion();
+                    break;
+            case 2:
+                    break;
+            case 3:
             case 0: return 0;
                 break;
         }
@@ -254,18 +347,27 @@ int MenuEmpleado(){
 }
 
 int MenuPreliquidacion(){
-    int opc;
+    int POSMENUX=34,POSMENUY=8, ANCHO_MENU=33,ALTO_MENU=8;
+    int opc=1,cursorX,cursorY;
     while(true){
         system("cls");
-        cout<<"MENU PRELIQUIDACION"<<endl;
-        cout<<"---------------------------------"<<endl;
-        cout<<" 1) CARGAR PRE LIQUIDACION"<<endl;
-        cout<<" 2) MOSTRAR PRE LIQUIDACIONES"<<endl;
-        cout<<"---------------------------------"<<endl;
-        cout<<" 0) VOLVER AL MENU PRINCIPAL"<<endl;
-        cout<<"INGRESE OPCION: ";
-        cin>>opc;
-        system("cls");
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+7,POSMENUY+1);
+        cout<<"MENÚ PRE LIQUIDACIÓN"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" CARGAR PRE LIQUIDACIÓN"<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" MOSTRAR PRE LIQUIDACIONES"<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" MODIFICAR PRE LIQUIDACIONES"<<endl;
+        separadorH(POSMENUX,POSMENUY+6,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" VOLVER AL MENÚ PRINCIPAL"<<endl;
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,3,7);
         switch(opc){
             case 1:
                     cargarPreLiquidacion();
@@ -276,25 +378,24 @@ int MenuPreliquidacion(){
                     mostrarPreLiquidaciones();
                     system("pause>nul");
                     break;
+            case 3: menuModificacionesPreLiquidaciones();
             case 0: return 0;
-                break;
-            default:
                 break;
         }
     }
 }
 
 int MenuLiquidacion(){
-    int opc;
+    int opc=1;
     while(true){
         system("cls");
-        cout<<"MENU PRELIQUIDACION"<<endl;
+        cout<<"MENÚ PRELIQUIDACION"<<endl;
         cout<<"-----------------------------------"<<endl;
-        cout<<" 1) CARGAR LIQUIDACION"<<endl;
+        cout<<" 1) CARGAR LIQUIDACIÓN"<<endl;
         cout<<" 2) MOSTRAR LIQUIDACIONES"<<endl;
-        cout<<" 3) GENERAR LIQUIDACION POR DNI"<<endl;
+        cout<<" 3) GENERAR LIQUIDACIÓN POR DNI"<<endl;
         cout<<"-----------------------------------"<<endl;
-        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<"0) VOLVER AL MENÚ PRINCIPAL"<<endl;
         cout<<"INGRESE OPCION: ";
         cin>>opc;
         system("cls");
@@ -325,25 +426,42 @@ int MenuLiquidacion(){
 }
 
 int menuBackups(){
-    int opc=-1;
+    int POSMENUX=28,POSMENUY=6, ANCHO_MENU=44,ALTO_MENU=7;
+    int opc=1,cursorX,cursorY;
     while(opc!=0){
         system("cls");
-        cout<<"MENU BACKUPS"<<endl;
-        cout<<"---------------------------------------"<<endl;
-        cout<<" 1) GENERAR BACKUP EMPLEADOS"<<endl;
-        cout<<" 2) GENERAR BACKUP CARGOS"<<endl;
-        cout<<" 3) GENERAR BACKUP PRE LIQUIDACIONES"<<endl;
-        cout<<" 4) GENERAR BACKUP LIQUIDACIONES"<<endl;
-        cout<<" 5) GENERAR BACKUP DESCUENTOS"<<endl<<endl;
-        cout<<" 6) RESTAURAR BACKUP EMPLEADOS"<<endl;
-        cout<<" 7) RESTAURAR BACKUP CARGOS"<<endl;
-        cout<<" 8) RESTAURAR BACKUP PRE LIQUIDACIONES"<<endl;
-        cout<<" 9) RESTAURAR BACKUP LIQUIDACIONES"<<endl;
-        cout<<" 10) RESTAURAR BACKUP DESCUENTOS"<<endl;
-        cout<<"---------------------------------------"<<endl;
-        cout<<" 0) VOLVER AL MENU DE CONFIGURACIONES"<<endl;
-        cout<<"OPCION: ";
-        cin>>opc;
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+7,POSMENUY+1);
+        cout<<"MENÚ BACKUPS"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" GENERAR BACKUP EMPLEADOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" GENERAR BACKUP CARGOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" GENERAR BACKUP PRE LIQUIDACIONES"<<endl;
+        locate(POSMENUX+4,POSMENUY+6);
+        cout<<" GENERAR BACKUP LIQUIDACIONES"<<endl;
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" GENERAR BACKUP DESCUENTOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+8);
+        cout<<" RESTAURAR BACKUP EMPLEADOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+9);
+        cout<<" RESTAURAR BACKUP CARGOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+10);
+        cout<<" RESTAURAR BACKUP PRE LIQUIDACIONES"<<endl;
+        locate(POSMENUX+4,POSMENUY+11);
+        cout<<" RESTAURAR BACKUP LIQUIDACIONES"<<endl;
+        locate(POSMENUX+4,POSMENUY+12);
+        cout<<" RESTAURAR BACKUP DESCUENTOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+13);
+        cout<<" VOLVER AL MENÚ DE CONFIGURACIONES"<<endl;
+
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,12,14);
+
         switch(opc){
             case 1: generarBackupEmpleados();
                 break;
@@ -375,10 +493,10 @@ int menuBackups(){
 }
 
 int MenuConfiguracion(){
-    int opc;
+    int opc=1;
     while(true){
         system("cls");
-        cout<<"MENU PRELIQUIDACION"<<endl;
+        cout<<"MENÚ CONFIGURACIÓN"<<endl;
         cout<<"------------------------------"<<endl;
         cout<<" 1) GENERAR/RESTAURAR BACKUPS"<<endl;
         cout<<" 2) CARGAR DESCUENTOS"<<endl;
@@ -386,7 +504,7 @@ int MenuConfiguracion(){
         cout<<" 4) CARGAR CARGO"<<endl;
         cout<<" 5) MOSTRAR CARGOS"<<endl;
         cout<<"------------------------------"<<endl;
-        cout<<"0) VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<"0) VOLVER AL MENÚ PRINCIPAL"<<endl;
         cout<<"INGRESE OPCION: ";
         cin>>opc;
         system("cls");
@@ -657,25 +775,6 @@ void restaurarBackupLiquidacion(){
     fclose(c);
 }
 
-/*void bajaLogicaEmpleado(){
-    FILE *p;
-    Empleado reg;
-    int auxDni;
-    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
-    cin>>auxDni;
-    p=fopen(FILE_EMPLEADOS,"rb+");
-    while(fread(&reg,sizeof reg,1,p)){
-        if(reg.getDni()==auxDni){
-            fseek(p,sizeof(Empleado),1);
-            reg.setEstado(0);
-            fwrite(&reg,sizeof reg, 1, p);
-            fclose(p);
-            return;
-        }
-    }
-    fclose(p);
-}*/
-
 //-----------------MODIFICAR DOMICILIO-----------------//
 
 int buscarposDni(int _dni){
@@ -693,7 +792,7 @@ int buscarposDni(int _dni){
         pos++;
     }
     fclose(p);
-    return-1;
+    return -1;
 }
 
 bool modificarEnDisco(Empleado reg,int pos){
@@ -963,6 +1062,12 @@ void bajaLogicaEmpleado(){
     reg.setEstado(0);
 
     modificarEnDisco(reg,pos);
+}
+
+//------------ MODIFICACIONES PRE LIQUIDACIONES ---------//
+
+void modificarPDLiquidacion(){
+
 }
 
 #endif // FUNCIONES_H_INCLUDED
