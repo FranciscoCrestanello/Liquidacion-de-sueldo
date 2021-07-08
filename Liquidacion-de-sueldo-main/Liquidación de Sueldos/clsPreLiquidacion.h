@@ -23,8 +23,16 @@ class PreLiquidacion{
                 cout<<"INGRESE OTRO NUMERO: ";
                 cin>>x;
             }
-            dni=x;}
-        void setFeriados(int x){feriados=x;}
+            dni=x;
+        }
+        void setFeriados(int x){
+            while(x<0){
+                cout<<"EL NUMERO DEBE SER MAYOR O IGUAL A 0: "<<endl;
+                cout<<"INGRESE OTRO NUMERO: ";
+                cin>>x;
+            }
+            feriados=x;
+        }
         void setHorasTrabajadas(float x){
             while( !(x>0 && x<200) ){
                 cout<<"CANTIDAD DE HORAS NO VALIDAS"<<endl;
@@ -34,6 +42,7 @@ class PreLiquidacion{
             horasTrabajadas=x;}
         void setPresentismo(bool x){presentismo=x;}
         void setPuntualidad(bool x){puntualidad=x;}
+        void setFecha(Fecha i){periodoLiquidacion=i;}
         //gets
         Fecha getFecha(){return periodoLiquidacion;}
         int getDni(){return dni;}
@@ -65,7 +74,7 @@ void PreLiquidacion::cargar(){
     cout<<"-LA FECHA DEBE SER MES/ANIO ";
     locate(6,17);*/
     char aux[3];
-    cout<<"PERIODO DE LIQUIDACION: "<<endl;
+    cout<<"PERIODO DE LIQUIDACION: ";
     periodoLiquidacion.cargar();
     cout<<"DNI: ";
     cin>>dni;
@@ -74,11 +83,11 @@ void PreLiquidacion::cargar(){
         cin>>feriados;
         cout<<"HORAS TRABAJADAS: ";
         cin>>horasTrabajadas;
-        cout<<"PRESENTISMO: SI/NO";
+        cout<<"PRESENTISMO (SI/NO): ";
         cin>>aux;
         setPresentismo(validarTexto(aux));
         //cin>>presentismo;
-        cout<<"PUNTUALIDAD: SI/NO";
+        cout<<"PUNTUALIDAD (SI/NO): ";
         cin>>aux;
         setPuntualidad(validarTexto(aux));
         //cin>>puntualidad;

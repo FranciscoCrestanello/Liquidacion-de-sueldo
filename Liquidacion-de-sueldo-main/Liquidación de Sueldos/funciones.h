@@ -87,6 +87,16 @@ void modificarDni(); // MODIFICA EL DNI DEL EMPLEADO
 
 void modificarPDLiquidacion();
 
+void modificarDNIPreLiquidacion();
+
+void modificarFeriadosPreLiquidacion();
+
+void modificarHorasTrabajadasPreLiquidacion();
+
+void modificarPresentismoPreLiquidacion();
+
+void modificarPuntualidadPreLiquidacion();
+
 ////////// FIN DE LOS PROTOTIPOS //////////
 
 void cargarEmpleado(){
@@ -223,6 +233,7 @@ int MenuEmpleado(){
                     system("pause>nul");
                     break;
             case 3: menuModificacionesEmpleado();
+                break;
             case 0: return 0;
                 break;
         }
@@ -263,7 +274,7 @@ int menuModificacionesEmpleado(){
         cout<<" DAR DE BAJA A UN EMPLEADO."<<endl;
         separadorH(POSMENUX,POSMENUY+13,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
         locate(POSMENUX+4,POSMENUY+14);
-        cout<<" VOLVER AL MENÚ PRINCIPAL."<<endl;
+        cout<<" VOLVER AL MENÚ EMPLEADO."<<endl;
         opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,10,14);
 
         switch(opc){
@@ -332,14 +343,21 @@ int menuModificacionesPreLiquidaciones(){
         cout<<" MODIFICAR PUNTUALIDAD"<<endl;
         separadorH(POSMENUX,POSMENUY+9,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
         locate(POSMENUX+4,POSMENUY+10);
-        cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<" VOLVER AL MENU PRE LIQUIDACION"<<endl;
         opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,6,10);
         switch(opc){
             case 1: modificarPDLiquidacion();
                     break;
-            case 2:
+            case 2: modificarDNIPreLiquidacion();
                     break;
-            case 3:
+            case 3: modificarFeriadosPreLiquidacion();
+                break;
+            case 4: modificarHorasTrabajadasPreLiquidacion();
+                break;
+            case 5: modificarPresentismoPreLiquidacion();
+                break;
+            case 6: modificarPuntualidadPreLiquidacion();
+                break;
             case 0: return 0;
                 break;
         }
@@ -379,6 +397,7 @@ int MenuPreliquidacion(){
                     system("pause>nul");
                     break;
             case 3: menuModificacionesPreLiquidaciones();
+                    break;
             case 0: return 0;
                 break;
         }
@@ -426,7 +445,7 @@ int MenuLiquidacion(){
 }
 
 int menuBackups(){
-    int POSMENUX=28,POSMENUY=6, ANCHO_MENU=44,ALTO_MENU=7;
+    int POSMENUX=28,POSMENUY=6, ANCHO_MENU=44,ALTO_MENU=15;
     int opc=1,cursorX,cursorY;
     while(opc!=0){
         system("cls");
@@ -457,10 +476,11 @@ int menuBackups(){
         cout<<" RESTAURAR BACKUP LIQUIDACIONES"<<endl;
         locate(POSMENUX+4,POSMENUY+12);
         cout<<" RESTAURAR BACKUP DESCUENTOS"<<endl;
-        locate(POSMENUX+4,POSMENUY+13);
+        separadorH(POSMENUX,POSMENUY+13,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+14);
         cout<<" VOLVER AL MENÚ DE CONFIGURACIONES"<<endl;
 
-        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,12,14);
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,10,14);
 
         switch(opc){
             case 1: generarBackupEmpleados();
@@ -1065,9 +1085,154 @@ void bajaLogicaEmpleado(){
 }
 
 //------------ MODIFICACIONES PRE LIQUIDACIONES ---------//
+int buscarposDniPreLiq(int _dni){
+    PreLiquidacion reg;
+    int pos=0;
+    FILE *p;
+    p=fopen(FILE_PRELIQUIDACION,"rb");
+    if(p==NULL){return -2;}
+
+    while(fread(&reg,sizeof reg,1,p)){
+        if(reg.getDni()==_dni){
+            fclose(p);
+            return pos;
+        }
+        pos++;
+    }
+    fclose(p);
+    return -1;
+}
+
+bool modificarEnDiscoPreLiq(PreLiquidacion reg,int pos){
+    FILE *p;
+    p=fopen(FILE_PRELIQUIDACION,"rb+");
+
+    if(p==NULL){return false;}
+
+    fseek(p,pos*sizeof(PreLiquidacion),0);
+    bool escribio=fwrite(&reg,sizeof reg,1,p);
+    fclose(p);
+    return escribio;
+}
 
 void modificarPDLiquidacion(){
+    PreLiquidacion reg;
+    Fecha nuevaFecha;
+    int auxDni,pos=0;
+    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    cin>>auxDni;
+    pos=buscarposDniPreLiq(auxDni);
+    if(pos==-1){
+        cout<<"EL DNI NO EXISTE";
+        return;
+    }
+    cout<<"INGRESE LA FECHA NUEVA: ";
+    nuevaFecha.cargar();
 
+    reg.leerDeDisco(pos);
+    reg.setFecha(nuevaFecha);
+
+    modificarEnDiscoPreLiq(reg,pos);
+}
+
+void modificarDNIPreLiquidacion(){
+    PreLiquidacion reg;
+    int auxDni,pos=0;
+    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    cin>>auxDni;
+    pos=buscarposDniPreLiq(auxDni);
+    if(pos==-1){
+        cout<<"EL DNI NO EXISTE";
+        return;
+    }
+    cout<<"INGRESE EL NUEVO DNI: ";
+    cin>>auxDni;
+
+    reg.leerDeDisco(pos);
+    reg.setDni(auxDni);
+
+    modificarEnDiscoPreLiq(reg,pos);
+}
+
+void modificarFeriadosPreLiquidacion(){
+    PreLiquidacion reg;
+    int auxDni,nuevoFeriados,pos=0;
+    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    cin>>auxDni;
+    pos=buscarposDniPreLiq(auxDni);
+    if(pos==-1){
+        cout<<"EL DNI NO EXISTE";
+        return;
+    }
+    cout<<"INGRESE LOS FERIADOS TRABAJADOS: ";
+    cin>>nuevoFeriados;
+
+    reg.leerDeDisco(pos);
+    reg.setFeriados(nuevoFeriados);
+
+    modificarEnDiscoPreLiq(reg,pos);
+}
+
+void modificarHorasTrabajadasPreLiquidacion(){
+    PreLiquidacion reg;
+    int auxDni,pos=0;
+    float nuevoHorasTrabajadas;
+    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    cin>>auxDni;
+    pos=buscarposDniPreLiq(auxDni);
+    if(pos==-1){
+        cout<<"EL DNI NO EXISTE";
+        return;
+    }
+    cout<<"INGRESE LA CANTIDAD DE HORAS TRABAJADAS: ";
+    cin>>nuevoHorasTrabajadas;
+
+    reg.leerDeDisco(pos);
+    reg.setHorasTrabajadas(nuevoHorasTrabajadas);
+
+    modificarEnDiscoPreLiq(reg,pos);
+}
+
+void modificarPresentismoPreLiquidacion(){
+    PreLiquidacion reg;
+    int auxDni,pos=0;
+    char presentismo[3];
+    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    cin>>auxDni;
+    pos=buscarposDniPreLiq(auxDni);
+    if(pos==-1){
+        cout<<"EL DNI NO EXISTE";
+        return;
+    }
+    cout<<"PRESENTISMO (SI/NO): ";
+    cin>>presentismo;
+
+
+    reg.leerDeDisco(pos);
+    reg.setPresentismo(validarTexto(presentismo));
+
+    modificarEnDiscoPreLiq(reg,pos);
+}
+
+void modificarPuntualidadPreLiquidacion(){
+    PreLiquidacion reg;
+    int auxDni,pos=0;
+    char puntualidad[3];
+    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    cin>>auxDni;
+    pos=buscarposDniPreLiq(auxDni);
+    if(pos==-1){
+        cout<<"EL DNI NO EXISTE";
+        return;
+    }
+    cout<<"PUNTUALIDAD (SI/NO): ";
+    cin>>puntualidad;
+
+
+    reg.leerDeDisco(pos);
+    reg.setPuntualidad(validarTexto(puntualidad));
+
+    modificarEnDiscoPreLiq(reg,pos);
 }
 
 #endif // FUNCIONES_H_INCLUDED
