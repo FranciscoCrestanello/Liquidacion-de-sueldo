@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Debug" />
+	<File name="clsFecha.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="647" topLine="5" />
+		</Cursor>
+		<Folding>
+			<Collapse line="7" />
+			<Collapse line="12" />
+			<Collapse line="75" />
+		</Folding>
+	</File>
+	<File name="clsDescuentos.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1111" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="955" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="funciones.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="19405" topLine="485" />
+		</Cursor>
+		<Folding>
+			<Collapse line="707" />
+			<Collapse line="731" />
+			<Collapse line="755" />
+			<Collapse line="780" />
+			<Collapse line="804" />
+			<Collapse line="828" />
+			<Collapse line="853" />
+			<Collapse line="876" />
+			<Collapse line="898" />
+			<Collapse line="920" />
+		</Folding>
+	</File>
+	<File name="clsLiquidacion.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5246" topLine="112" />
+		</Cursor>
+		<Folding>
+			<Collapse line="52" />
+			<Collapse line="79" />
+			<Collapse line="98" />
+			<Collapse line="107" />
+			<Collapse line="118" />
+		</Folding>
+	</File>
+	<File name="clsDomicilio.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="284" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="clsPreLiquidacion.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6130" topLine="49" />
+		</Cursor>
+		<Folding>
+			<Collapse line="14" />
+			<Collapse line="63" />
+			<Collapse line="74" />
+			<Collapse line="124" />
+			<Collapse line="189" />
+			<Collapse line="214" />
+			<Collapse line="222" />
+		</Folding>
+	</File>
+	<File name="clsEmpleado.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5281" topLine="128" />
+		</Cursor>
+		<Folding>
+			<Collapse line="95" />
+			<Collapse line="103" />
+		</Folding>
+	</File>
+	<File name="clsCargo.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1216" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rlutilFunciones.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4884" topLine="141" />
+		</Cursor>
+	</File>
+	<File name="rlutil.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="562" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>
