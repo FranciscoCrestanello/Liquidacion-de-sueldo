@@ -169,7 +169,135 @@ void ampliarTabla(int fila){
     setlocale(LC_ALL,"spanish");
 }
 
+///------TABLA CARGOS----------///
 
+void dibujarTablaCargo(int fila){
+    recuadro(5,fila-3,95,2,LETRA_COLOR,FONDO_COLOR);
 
+    separadorV(13,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(32,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(45,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(58,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(71,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(85,fila-3,2,LETRA_COLOR,FONDO_COLOR);
 
+    locate(7,fila-2);
+    cout<<"CARGO";
+    locate(15,fila-2);
+    cout<<"NOMBRE DEL CARGO";
+    locate(36,fila-2);
+    cout<<"SUELDO ";
+    locate(47,fila-2);
+    cout<<"ANTIGUEDAD";
+    locate(60,fila-2);
+    cout<<"ASISTENCIA";
+    locate(73,fila-2);
+    cout<<"PUNTUALIDAD";
+    locate(87,fila-2);
+    cout<<"PLUS FERIADO";
+}
+
+void ampliarTablaCargo(int fila){
+    recuadro(5, fila-1, 95, 2, LETRA_COLOR, FONDO_COLOR);
+    separadorV(13,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(32,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(45,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(58,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(71,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(85,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+
+    separadorH(5,fila-1,95,LETRA_COLOR,FONDO_COLOR);
+    setlocale(LC_ALL,"C");
+    locate(13, fila-1);
+    cout<<(char)206;
+    locate(32, fila-1);
+    cout<<(char)206;
+    locate(45, fila-1);
+    cout<<(char)206;
+    locate(58, fila-1);
+    cout<<(char)206;
+    locate(71, fila-1);
+    cout<<(char)206;
+    locate(85, fila-1);
+    cout<<(char)206;
+    setlocale(LC_ALL,"spanish");
+}
+
+///--------TABLA DESCUENTOS------------///
+
+void dibujarTablaDescuentos(int fila){
+    recuadro(5,fila-3,57,2,LETRA_COLOR,FONDO_COLOR);
+
+    separadorV(19,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(31,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(45,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(51,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    //separadorV(71,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    //separadorV(85,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+
+    locate(7,fila-2);
+    cout<<"JUBILACION";
+    locate(21,fila-2);
+    cout<<"LEY 19032";
+    locate(33,fila-2);
+    cout<<"OBRA SOCIAL ";
+    locate(47,fila-2);
+    cout<<"SEC";
+    locate(54,fila-2);
+    cout<<"FAEC";
+
+}
+
+void ampliarTablaDescuentos(int fila){
+    recuadro(5, fila-1, 57, 2, LETRA_COLOR, FONDO_COLOR);
+    separadorV(19,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(31,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(45,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(51,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    //separadorV(71,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+    //separadorV(85,fila-1,2,LETRA_COLOR,FONDO_COLOR);
+
+    separadorH(5,fila-1,57,LETRA_COLOR,FONDO_COLOR);
+    setlocale(LC_ALL,"C");
+    locate(19, fila-1);
+    cout<<(char)206;
+    locate(31, fila-1);
+    cout<<(char)206;
+    locate(45, fila-1);
+    cout<<(char)206;
+    locate(51, fila-1);
+    cout<<(char)206;
+    /*locate(71, fila-1);
+    cout<<(char)206;
+    locate(85, fila-1);
+    cout<<(char)206;*/
+    setlocale(LC_ALL,"spanish");
+}
+
+///---- RECIBO SUELDO----///
+void dibujarRecibo(int fila){
+    recuadro(5,fila-3,95,2,LETRA_COLOR,FONDO_COLOR);
+
+    separadorV(13,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(32,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(45,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(58,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(71,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+    separadorV(85,fila-3,2,LETRA_COLOR,FONDO_COLOR);
+
+    /*locate(7,fila-2);
+    cout<<"CARGO";
+    locate(15,fila-2);
+    cout<<"NOMBRE DEL CARGO";
+    locate(36,fila-2);
+    cout<<"SUELDO ";
+    locate(47,fila-2);
+    cout<<"ANTIGUEDAD";
+    locate(60,fila-2);
+    cout<<"ASISTENCIA";
+    locate(73,fila-2);
+    cout<<"PUNTUALIDAD";
+    locate(87,fila-2);
+    cout<<"PLUS FERIADO";*/
+}
 #endif // RLUTILFUNCIONES_H_INCLUDED

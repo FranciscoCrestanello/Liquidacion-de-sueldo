@@ -54,34 +54,22 @@ void Empleado::cargar(){
     char aux[30];
     int num;
 
-    locate(6,21);
-    cout<<"-EL NOMBRE Y EL APELLIDO DEBE SER MAXIMO DE 25 LETRAS ";
-    locate(6,22);
-    cout<<"-EL EMAIL DEBE TENER COMO MÁXIMO 35 CARACTERES Y @";
-    locate(6,23);
-    cout<<"-LA DIRECCIÓN DEBE ESTAR COMPUESTA POR LA LOCALIDAD, CALLE Y NUMERO";
-    locate(6,24);
-    cout<<"-EL DNI DEBE INGRESARSE SIN PUNTOS NI COMAS";
-    locate(6,25);
-    cout<<"-EL CARGO PUEDE SER:";
-    locate(6,27);
-    cout<<"\t\t1: MAESTRANZA";
-    locate(6,28);
-    cout<<"\t\t2: ADMINISTRATIVO";
-    locate(6,29);
-    cout<<"\t\t3: CAJERO";
-    locate(6,30);
-    cout<<"\t\t4: VENDEDOR";
+    recuadro(5,20,83,10,LETRA_COLOR,FONDO_COLOR);
+    locate(6,21);cout<<"-EL NOMBRE Y EL APELLIDO DEBE SER MAXIMO DE 25 LETRAS ";
+    locate(6,22);cout<<"-EL EMAIL DEBE TENER COMO MÁXIMO 35 CARACTERES Y @";
+    locate(6,23);cout<<"-LA FECHA DE NACIMIENTO E INGRESO DEBE SER EN FORMATO DD/MM/AAAA";
+    locate(6,24);cout<<"-EL DNI DEBE INGRESARSE SIN PUNTOS NI COMAS";
+    locate(6,25);cout<<"-EL CARGO PUEDE SER:";
+    locate(6,26);cout<<"\t\t1: MAESTRANZA";
+    locate(6,27);cout<<"\t\t2: ADMINISTRATIVO";
+    locate(6,28);cout<<"\t\t3: CAJERO";
+    locate(6,29);cout<<"\t\t4: VENDEDOR";
 
     locate(6,4);cout<<"NOMBRE: ";
     locate(6,5);cout<<"APELLIDO: ";
     locate(6,6);cout<<"E-MAIL: ";
     locate(6,7);cout<<"FECHA NACIMIENTO: ";
-        locate(30,7);cout<<"/";
-        locate(33,7);cout<<"/";
     locate(6,8);cout<<"FECHA DE INGRESO: ";
-        locate(30,8);cout<<"/";
-        locate(33,8);cout<<"/";
     locate(6,9);cout<<"DOMICILIO: ";
         locate(6,10);cout<<"-LOCALIDAD: ";
         locate(6,11);cout<<"-CALLE: ";
@@ -121,8 +109,10 @@ void Empleado::cargar(){
     int d,m,a;
     locate(28,7);cin>>d;
     fechaDeNacimiento.setDia(d);
+    locate(30,7);cout<<"/";
     locate(31,7);cin>>m;
     fechaDeNacimiento.setMes(m);
+    locate(33,7);cout<<"/";
     locate(34,7);cin>>a;
     fechaDeNacimiento.setAnio(a);
 
@@ -143,8 +133,10 @@ void Empleado::cargar(){
     //cout<<"FECHA DE INGRESO: ";
     locate(28,8);cin>>d;
     fechaIngreso.setDia(d);
+    locate(30,8);cout<<"/";
     locate(31,8);cin>>m;
     fechaIngreso.setMes(m);
+    locate(33,8);cout<<"/";
     locate(34,8);cin>>a;
     fechaIngreso.setAnio(a);
     while(CalcularEdad(fechaDeNacimiento)<18){

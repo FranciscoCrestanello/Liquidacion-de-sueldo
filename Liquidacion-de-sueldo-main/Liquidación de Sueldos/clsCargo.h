@@ -1,5 +1,8 @@
 #ifndef CLSCARGO_H_INCLUDED
 #define CLSCARGO_H_INCLUDED
+
+#include "rlutilFunciones.h"
+
 int contadorDeCargos();
 void cargarCadena(char *pal, int tam);
 class Cargo{
@@ -59,14 +62,45 @@ void Cargo::cargar(){
     cout<<endl;
 }
 
+void mostrarCargoRecuadro(int fila,Cargo reg){
+    locate(7,fila);cout<<reg.getCargo();
+    locate(15,fila);cout<<reg.getNombreCargo();
+    locate(35,fila);cout<<"$"<<reg.getSueldoBasico();
+    locate(51,fila);cout<<reg.getAntiguedad()<<"%";
+    locate(63,fila);cout<<reg.getAsisistencia()<<"%";
+    locate(77,fila);cout<<reg.getPuntualidad()<<"%";
+    locate(91,fila);cout<<reg.getPlusFeriado()<<"%";
+}
+
 void Cargo::mostrar(){
-    cout<<"CARGO: "<<cargo<<endl;
-    cout<<"NOMBRE DEL CARGO: "<<nombreCargo<<endl;
-    cout<<"SUELDO BASICO: $ "<<sBasico<<endl;
-    cout<<"ANTIGUEDAD: % "<<antiguedad<<endl;
-    cout<<"ASISTENCIA: % "<<asistencia<<endl;
-    cout<<"PUNTUALIDAD: % "<<puntualidad<<endl;
-    cout<<"PLUS FERIADO: % "<<plusFeriado<<endl<<endl;
+    int fila, cant=4;
+    fila=7;
+    Cargo reg;
+    dibujarTablaCargo(fila);
+    for(int i=0;i<cant;i++){
+        reg.leerDeDisco(i);
+        ampliarTablaCargo(fila);
+        mostrarCargoRecuadro(fila,reg);
+        fila++;
+        if(i!=cant-1){
+            separadorH(5,fila,95,LETRA_COLOR,FONDO_COLOR);
+            setlocale(LC_ALL,"C");
+            locate(13, fila);
+            cout<<(char)206;
+            locate(32, fila);
+            cout<<(char)206;
+            locate(45, fila);
+            cout<<(char)206;
+            locate(58, fila);
+            cout<<(char)206;
+            locate(71, fila);
+            cout<<(char)206;
+            locate(85, fila);
+            cout<<(char)206;
+            setlocale(LC_ALL,"spanish");
+            fila++;
+        }
+    }
 }
 
 bool Cargo::grabarEnDisco(){

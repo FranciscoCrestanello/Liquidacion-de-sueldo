@@ -228,6 +228,32 @@ void Liquidacion::cargarAutomatico(){
     }
     sueldoNETO=sueldoBRUTO-(jubilacion+obraSocial+ley19032+SEC+FAEC);
 
+    ///dibujartabla 32 filas 5 columnas
+
+    int fila, cant=5;
+    fila=32;
+    dibujarRecibo(fila);
+    for(int i=0;i<cant;i++){
+        //reg.leerDeDisco(i);
+        //ampliarTablaDescuentos(fila);
+        //mostrarDescuentosRecuadro(fila,reg);
+        fila++;
+        if(i!=cant-1){
+            separadorH(5,fila,57,LETRA_COLOR,FONDO_COLOR);
+            setlocale(LC_ALL,"C");
+            locate(18, fila);
+            cout<<(char)206;
+            locate(29, fila);
+            cout<<(char)206;
+            locate(45, fila);
+            cout<<(char)206;
+            locate(51, fila);
+            cout<<(char)206;
+            setlocale(LC_ALL,"spanish");
+            fila++;
+        }
+
+
     cout<<"SUELDO BRUTO: $"<<sueldoBRUTO<<endl;
     cout<<"SUELDO NETO: $"<<sueldoNETO<<endl;
 
@@ -249,7 +275,7 @@ void Liquidacion::cargarAutomatico(){
     system("pause>nul");
     cout<<endl;
 }
-
+}
 bool generarliquidacion(){
     Liquidacion reg;
     reg.cargarAutomatico();
