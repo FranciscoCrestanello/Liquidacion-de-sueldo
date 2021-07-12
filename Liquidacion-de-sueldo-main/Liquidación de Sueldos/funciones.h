@@ -109,6 +109,20 @@ void modificarSEC();
 
 void modificarFAEC();
 
+int MenuModificarCargos();
+
+void modificarNombreDelCargo();
+
+void modificarSueldoBasicoCargo();
+
+void modificarAntiguedadDelCargo();
+
+void modificarAsistenciaDelCargo();
+
+void modificarPuntualidadDelCargo();
+
+void modificarFeriadoDelCargo();
+
 ////////// FIN DE LOS PROTOTIPOS //////////
 
 void cargarEmpleado(){
@@ -417,19 +431,29 @@ int MenuPreliquidacion(){
 }
 
 int MenuLiquidacion(){
-    int opc=1;
+    int POSMENUX=34,POSMENUY=8, ANCHO_MENU=34,ALTO_MENU=8;
+    int opc=1,cursorX,cursorY;
     while(true){
         system("cls");
-        cout<<"MENÚ PRELIQUIDACION"<<endl;
-        cout<<"-----------------------------------"<<endl;
-        cout<<" 1) CARGAR LIQUIDACIÓN"<<endl;
-        cout<<" 2) MOSTRAR LIQUIDACIONES"<<endl;
-        cout<<" 3) GENERAR LIQUIDACIÓN POR DNI"<<endl;
-        cout<<"-----------------------------------"<<endl;
-        cout<<"0) VOLVER AL MENÚ PRINCIPAL"<<endl;
-        cout<<"INGRESE OPCION: ";
-        cin>>opc;
-        system("cls");
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+9,POSMENUY+1);
+        cout<<"MENÚ LIQUIDACIÓN"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" CARGAR LIQUIDACIÓN"<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" MOSTRAR LIQUIDACIONES"<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" GENERAR LIQUIDACIÓN POR DNI"<<endl;
+        separadorH(POSMENUX,POSMENUY+6,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" VOLVER AL MENÚ PRINCIPAL"<<endl;
+
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,3,7);
+
         switch(opc){
             case 1:
                     cargarLiquidacion();
@@ -571,8 +595,59 @@ int MenuModificarDescuentos(){
     }
 }
 
+int MenuModificarCargos(){
+    int POSMENUX=33,POSMENUY=8, ANCHO_MENU=40,ALTO_MENU=11;
+    int opc=1,cursorX,cursorY;
+    while(true){
+        system("cls");
+        opc=1;
+        cursorX=POSMENUX+1;
+        cursorY=POSMENUY+3;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+10,POSMENUY+1);
+        cout<<"MENÚ MODIFICAR CARGOS"<<endl;
+        locate(POSMENUX+4,POSMENUY+3);
+        cout<<" MODIFICAR NOMBRE DEL CARGO"<<endl;
+        locate(POSMENUX+4,POSMENUY+4);
+        cout<<" MODIFICAR SUELDO BASICO"<<endl;
+        locate(POSMENUX+4,POSMENUY+5);
+        cout<<" MODIFICAR ANTIGUEDAD"<<endl;
+        locate(POSMENUX+4,POSMENUY+6);
+        cout<<" MODIFICAR ASISTENCIA"<<endl;
+        locate(POSMENUX+4,POSMENUY+7);
+        cout<<" MODIFICAR PUNTUALIDAD"<<endl;
+        locate(POSMENUX+4,POSMENUY+8);
+        cout<<" MODIFICAR PLUS FERIADOS"<<endl;
+
+        separadorH(POSMENUX,POSMENUY+9,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+10);
+        cout<<" VOLVER AL MENÚ DE CONFIGURACIÓN"<<endl;
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,6,10);
+        system("cls");
+        switch(opc){
+            case 1: modificarNombreDelCargo();
+                break;
+            case 2: modificarSueldoBasicoCargo();
+                break;
+            case 3: modificarAntiguedadDelCargo();
+                break;
+            case 4: modificarAsistenciaDelCargo();
+                break;
+            case 5: modificarPuntualidadDelCargo();
+                break;
+            case 6: modificarFeriadoDelCargo();
+                break;
+            case 0: return 0;
+                    break;
+            default:
+                break;
+        }
+    }
+}
+
 int MenuConfiguracion(){
-    int POSMENUX=33,POSMENUY=8, ANCHO_MENU=35,ALTO_MENU=12;
+    int POSMENUX=33,POSMENUY=8, ANCHO_MENU=35,ALTO_MENU=11;
     int opc=1,cursorX,cursorY;
     while(true){
         system("cls");
@@ -586,48 +661,42 @@ int MenuConfiguracion(){
         locate(POSMENUX+4,POSMENUY+3);
         cout<<" GENERAR/RESTAURAR BACKUPS"<<endl;
         locate(POSMENUX+4,POSMENUY+4);
-        cout<<" CARGAR DESCUENTOS"<<endl;
-        locate(POSMENUX+4,POSMENUY+5);
         cout<<" MOSTRAR DESCUENTOS"<<endl;
-        locate(POSMENUX+4,POSMENUY+6);
+        locate(POSMENUX+4,POSMENUY+5);
         cout<<" MODIFICAR DESCUENTOS"<<endl;
-        locate(POSMENUX+4,POSMENUY+7);
+        locate(POSMENUX+4,POSMENUY+6);
         cout<<" CARGAR CARGO"<<endl;
-        locate(POSMENUX+4,POSMENUY+8);
+        locate(POSMENUX+4,POSMENUY+7);
         cout<<" MOSTRAR CARGOS"<<endl;
-        locate(POSMENUX+4,POSMENUY+9);
+        locate(POSMENUX+4,POSMENUY+8);
         cout<<" MODIFICAR CARGOS"<<endl;
-        separadorH(POSMENUX,POSMENUY+10,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
-        locate(POSMENUX+4,POSMENUY+11);
+        separadorH(POSMENUX,POSMENUY+9,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
+        locate(POSMENUX+4,POSMENUY+10);
         cout<<" VOLVER AL MENÚ PRINCIPAL"<<endl;
-        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,7,11);
+        opc=mostrarCursor(cursorX,cursorY,opc,POSMENUY,6,10);
         system("cls");
         switch(opc){
             case 1: menuBackups();
                     break;
             case 2:
-                    cargarDescuentos();
-                    system("pause>nul");
-                    system("cls");
-                    break;
-            case 3:
                     mostrarDescuentos();
                     system("pause>nul");
                     system("cls");
                     break;
-            case 4: MenuModificarDescuentos();
+            case 3: MenuModificarDescuentos();
                     break;
-            case 5:
+            case 4:
                     cargarCargo();
                     system("pause>nul");
                     system("cls");
                     break;
-            case 6:
+            case 5:
                     mostrarCargos();
                     system("pause>nul");
                     system("cls");
                     break;
-            case 7: // MODIFICAR CARGOS
+            case 6: MenuModificarCargos();
+                break;
             case 0: return 0;
                     break;
             default:
@@ -1401,6 +1470,198 @@ void modificarFAEC(){
     modificarEnDiscoDescuentos(reg);
 }
 
+//------------- MODIFICAR CARGO ------------------//
 
+bool modificarEnDiscoCargos(Cargo reg,int pos){
+    FILE *p;
+    p=fopen(FILE_TABLA_CARGO,"rb+");
+
+    if(p==NULL){return false;}
+
+    fseek(p,pos*sizeof(Cargo),0);
+    bool escribio=fwrite(&reg,sizeof reg,1,p);
+    fclose(p);
+    return escribio;
+}
+
+int buscarPosEnTablaCargo(int posBuscada){
+    Cargo reg;
+    int pos=0;
+    while(reg.leerDeDisco(pos++)){
+        if(reg.getCargo()==posBuscada)return pos-1;
+    }
+    return -1;
+}
+
+void modificarNombreDelCargo(){
+    Cargo reg;
+    char nuevoNombre[25];
+    int pos,numCargo;
+
+    cout<<"INGRESE EL NUMERO DE CARGO: ";
+    cin>>numCargo;
+    pos=buscarPosEnTablaCargo(numCargo);
+    while(pos==-1){
+        cout<<"EL CARGONO EXISTE."<<endl;
+        cout<<"INGRESE EL NUMERO DE CARGO: ";
+        cin>>numCargo;
+        pos=buscarPosEnTablaCargo(numCargo);
+    }
+
+    cout<<"INGRESE EL NUEVO NOMBRE: ";
+    cargarCadena(nuevoNombre,24);
+    while(strlen(nuevoNombre)==0){
+        cout<<"LA CADENA NO DEBE QUEDAR VACÍA."<<endl;
+        cout<<"INGRESE EL NUEVO NOMBRE: ";
+        cargarCadena(nuevoNombre,24);
+    }
+    reg.leerDeDisco(pos);
+    reg.setNombreCargo(nuevoNombre);
+    modificarEnDiscoCargos(reg,pos);
+}
+float buscarSueldoBasicoCargo(int posBuscado){
+    Cargo reg;
+    int pos=0;
+    float sueldoBasico=0;
+    while(reg.leerDeDisco(pos++)){
+        if(reg.getCargo()==posBuscado+1){
+            sueldoBasico=reg.getSueldoBasico();
+            return sueldoBasico;
+        }
+    }
+    return sueldoBasico;
+}
+void modificarSueldoBasicoCargo(){
+    Cargo reg;
+    float sueldoBasicoNuevo,sueldoBasicoViejo;
+    int pos,numCargo;
+    cout<<"INGRESE EL NUMERO DE CARGO: ";
+    cin>>numCargo;
+    pos=buscarPosEnTablaCargo(numCargo);
+    while(pos==-1){
+        cout<<"EL CARGONO EXISTE."<<endl;
+        cout<<"INGRESE EL NUMERO DE CARGO: ";
+        cin>>numCargo;
+        pos=buscarPosEnTablaCargo(numCargo);
+    }
+
+    sueldoBasicoViejo=buscarSueldoBasicoCargo(pos);
+    cout<<"SUELDO ACTUAL: $"<<sueldoBasicoViejo<<endl;
+    cout<<"INGRESE EL NUEVO SUELDO BASICO: $ ";
+    cin>>sueldoBasicoNuevo;
+    while(sueldoBasicoNuevo<=sueldoBasicoViejo){
+        cout<<"EL SUELDO DEBE SER MAYOR AL SUELDO ANTERIOR."<<endl;
+        cout<<"SUELDO ACTUAL: $"<<sueldoBasicoViejo<<endl;
+        cout<<"INGRESE EL SUELDO NUEVO: $";
+        cin>>sueldoBasicoNuevo;
+    }
+    reg.leerDeDisco(pos);
+    reg.setSueldoBasico(sueldoBasicoNuevo);
+    modificarEnDiscoCargos(reg,pos);
+}
+
+void modificarAntiguedadDelCargo(){
+    Cargo reg;
+    float porcentajeNuevo;
+    int pos,numCargo;
+    cout<<"INGRESE EL NUMERO DE CARGO: ";
+    cin>>numCargo;
+    pos=buscarPosEnTablaCargo(numCargo);
+    while(pos==-1){
+        cout<<"EL CARGONO EXISTE."<<endl;
+        cout<<"INGRESE EL NUMERO DE CARGO: ";
+        cin>>numCargo;
+        pos=buscarPosEnTablaCargo(numCargo);
+    }
+
+    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    cin>>porcentajeNuevo;
+    while(porcentajeNuevo<0){
+        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
+        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        cin>>porcentajeNuevo;
+    }
+    reg.leerDeDisco(pos);
+    reg.setAntiguedad(porcentajeNuevo);
+    modificarEnDiscoCargos(reg,pos);
+}
+
+void modificarAsistenciaDelCargo(){
+    Cargo reg;
+    float porcentajeNuevo;
+    int pos,numCargo;
+    cout<<"INGRESE EL NUMERO DE CARGO: ";
+    cin>>numCargo;
+    pos=buscarPosEnTablaCargo(numCargo);
+    while(pos==-1){
+        cout<<"EL CARGONO EXISTE."<<endl;
+        cout<<"INGRESE EL NUMERO DE CARGO: ";
+        cin>>numCargo;
+        pos=buscarPosEnTablaCargo(numCargo);
+    }
+
+    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    cin>>porcentajeNuevo;
+    while(porcentajeNuevo<0){
+        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
+        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        cin>>porcentajeNuevo;
+    }
+    reg.leerDeDisco(pos);
+    reg.setAsisistencia(porcentajeNuevo);
+    modificarEnDiscoCargos(reg,pos);
+}
+
+void modificarPuntualidadDelCargo(){
+    Cargo reg;
+    float porcentajeNuevo;
+    int pos,numCargo;
+    cout<<"INGRESE EL NUMERO DE CARGO: ";
+    cin>>numCargo;
+    pos=buscarPosEnTablaCargo(numCargo);
+    while(pos==-1){
+        cout<<"EL CARGONO EXISTE."<<endl;
+        cout<<"INGRESE EL NUMERO DE CARGO: ";
+        cin>>numCargo;
+        pos=buscarPosEnTablaCargo(numCargo);
+    }
+
+    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    cin>>porcentajeNuevo;
+    while(porcentajeNuevo<0){
+        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
+        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        cin>>porcentajeNuevo;
+    }
+    reg.leerDeDisco(pos);
+    reg.setPuntualidad(porcentajeNuevo);
+    modificarEnDiscoCargos(reg,pos);
+}
+
+void modificarFeriadoDelCargo(){
+    Cargo reg;
+    float porcentajeNuevo;
+    int pos,numCargo;
+    cout<<"INGRESE EL NUMERO DE CARGO: ";
+    cin>>numCargo;
+    pos=buscarPosEnTablaCargo(numCargo);
+    while(pos==-1){
+        cout<<"EL CARGONO EXISTE."<<endl;
+        cout<<"INGRESE EL NUMERO DE CARGO: ";
+        cin>>numCargo;
+        pos=buscarPosEnTablaCargo(numCargo);
+    }
+
+    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    cin>>porcentajeNuevo;
+    while(porcentajeNuevo<0){
+        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
+        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        cin>>porcentajeNuevo;
+    }
+    reg.leerDeDisco(pos);
+    reg.setPlusFeriado(porcentajeNuevo);
+    modificarEnDiscoCargos(reg,pos);
+}
 
 #endif // FUNCIONES_H_INCLUDED
