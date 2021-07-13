@@ -123,6 +123,9 @@ void modificarPuntualidadDelCargo();
 
 void modificarFeriadoDelCargo();
 
+void cuadroModificacion();
+
+void cuadroModificacionDesc();
 ////////// FIN DE LOS PROTOTIPOS //////////
 
 void cargarEmpleado(){
@@ -138,6 +141,10 @@ void mostrarEmpleados(){
     while(reg.leerEnDisco(pos++)==true){
         if(reg.getEstado()!=0){
             reg.mostrar();
+            cout<<endl;
+            locate(30,21);cout<<"Presione una tecla para continuar..."<<endl;
+            hidecursor();
+            system("pause>nul");
         }
     }
 }
@@ -466,12 +473,7 @@ int MenuLiquidacion(){
                     system("cls");
                     system("pause");
                 break;
-            case 3: system("cls");
-                    if(generarliquidacion()==true){
-                        cout<<"SE GENERO LA LIQUIDACION CON EXITO"<<endl;
-                    }else{
-                        cout<<"NO SE HA PODIDO GENERAR LA LIQUIDACION"<<endl;
-                    }
+            case 3: generarliquidacion();
                     system("pause");
                 break;
             case 0: return 0;
@@ -941,6 +943,17 @@ void restaurarBackupLiquidacion(){
     fclose(c);
 }
 
+void cuadroModificacion(){
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+}
+
+void cuadroModificacionDesc(){
+    recuadro(20,8,60,5,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+}
+
+
 //-----------------MODIFICAR DOMICILIO-----------------//
 
 int buscarposDni(int _dni){
@@ -1054,17 +1067,20 @@ void modificarNombre(){
     int _dni,pos;
     char nombre[25];
     Empleado reg;
-
-    cout<<"INGRESE EL NUMERO DE DNI: ";
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+    locate(40,9);cout<<"MODIFICAR NOMBRE";
+    locate(30,11);cout<<"INGRESE EL NUMERO DE DNI: ";
     cin>>_dni;
 
     pos=buscarposDni(_dni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
 
-    cout<<"INGRESE EL NUEVO NOMBRE: ";
+    locate(30,13);cout<<"INGRESE EL NUEVO NOMBRE: ";
     cargarCadena(nombre,24);
     while(strlen(nombre)==0){
         cargarCadena(nombre,24);
@@ -1082,17 +1098,19 @@ void modificarApellido(){
     int _dni,pos;
     char apellido[25];
     Empleado reg;
-
-    cout<<"INGRESE EL NUMERO DE DNI: ";
+    cuadroModificacion();
+    locate(40,9);cout<<"MODIFICAR APELLIDO";
+    locate(30,11);cout<<"INGRESE EL NUMERO DE DNI: ";
     cin>>_dni;
 
     pos=buscarposDni(_dni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
 
-    cout<<"INGRESE EL NUEVO APELLIDO: ";
+    locate(30,13);cout<<"INGRESE EL NUEVO APELLIDO: ";
     cargarCadena(apellido,24);
     while(strlen(apellido)==0){
         cargarCadena(apellido,24);
@@ -1104,19 +1122,25 @@ void modificarApellido(){
     modificarEnDisco(reg,pos);
 }
 
-//------------- MODIFICAR FECHA DE NACIMIENTO --------------//
+//------------- MODIFICAR FECHA DE NACIMIENTO --------------// TODO ARREGLAR INGRESO AA/MM/AAAA
 
 void modificarFechaDeNacimiento(){
     int _dni,pos;
     Fecha fechaNueva;
     Empleado reg;
-    cout<<"INGRESE EL NUMERO DE DNI: ";
+    cuadroModificacion();
+    locate(40,9);cout<<"MODIFICAR FECHA DE NACIMIENTO";
+    locate(30,11);cout<<"INGRESE EL NUMERO DE DNI: ";
     cin>>_dni;
 
     pos=buscarposDni(_dni);
-    if(pos==-1){cout<<"EL DNI NO EXISTE";}
+    if(pos==-1){
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
+        return;
+    }
 
-    cout<<"INGRESE LA NUEVA FECHA DE NACIMIENTO: ";
+    locate(30,13);cout<<"INGRESE LA NUEVA FECHA DE NACIMIENTO: ";
     fechaNueva.cargar();
 
     reg.leerEnDisco(pos);
@@ -1125,19 +1149,25 @@ void modificarFechaDeNacimiento(){
     modificarEnDisco(reg,pos);
 }
 
-//-------------- MODIFICAR FECHA DE INGRESO -------------//
+//-------------- MODIFICAR FECHA DE INGRESO -------------// TODO ARREGLAR FECHA
 
 void modificarFechaDeIngreso(){
     int _dni,pos;
     Fecha fechaNueva;
     Empleado reg;
-    cout<<"INGRESE EL NUMERO DE DNI: ";
+    cuadroModificacion();
+    locate(40,9);cout<<"MODIFICAR FECHA DE INGRESO";
+    locate(30,11);cout<<"INGRESE EL NUMERO DE DNI: ";
     cin>>_dni;
 
     pos=buscarposDni(_dni);
-    if(pos==-1){cout<<"EL DNI NO EXISTE";}
+    if(pos==-1){
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
+        return;
+    }
 
-    cout<<"INGRESE LA NUEVA FECHA DE INGRESO: ";
+    locate(30,13);cout<<"INGRESE LA NUEVA FECHA DE INGRESO: ";
     fechaNueva.cargar();
 
     reg.leerEnDisco(pos);
@@ -1150,13 +1180,19 @@ void modificarFechaDeIngreso(){
 void modificarCargo(){
     int _dni,pos,auxCargo;
     Empleado emp;
-    cout<<"INGRESE EL NUMERO DE DNI: ";
+    cuadroModificacion();
+    locate(40,9);cout<<"MODIFICAR CARGO";
+    locate(30,11);cout<<"INGRESE EL NUMERO DE DNI: ";
     cin>>_dni;
 
     pos=buscarposDni(_dni);
-    if(pos==-1){cout<<"EL DNI NO EXISTE";}
+    if(pos==-1){
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
+        return;
+    }
 
-    cout<<"INGRESE EL NUEVO CARGO: ";
+    locate(30,13);cout<<"INGRESE EL NUEVO CARGO: ";
     cin>>auxCargo;
 
     int x,cant=contadorDeCargos();
@@ -1173,7 +1209,7 @@ void modificarCargo(){
             }
         }
         if(cargoEncontrado==false){
-            cout<<"EL CARGO NO EXISTE. INTENTE DE NUEVO: \nCARGO: ";
+            locate(30,14);cout<<"EL CARGO NO EXISTE. INTENTE DE NUEVO: \nCARGO: ";
             cin>>auxCargo;
         }
     }
@@ -1192,17 +1228,19 @@ void modificarCargo(){
 void modificarDni(){
     int _dni,nuevoDni,pos;
     Empleado reg;
-
-    cout<<"INGRESE EL NUMERO DE DNI ACTUAL: ";
+    cuadroModificacion();
+    locate(40,9);cout<<"MODIFICAR DNI";
+    locate(30,11);cout<<"INGRESE EL NUMERO DE DNI ACTUAL: ";
     cin>>_dni;
 
     pos=buscarposDni(_dni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
 
-    cout<<"INGRESE EL NUEVO DNI: ";
+    locate(30,13);cout<<"INGRESE EL NUEVO DNI: ";
     cin>>nuevoDni;
 
     reg.leerEnDisco(pos);
@@ -1284,14 +1322,18 @@ void modificarPDLiquidacion(){
 void modificarDNIPreLiquidacion(){
     PreLiquidacion reg;
     int auxDni,pos=0;
-    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+    locate(40,9);cout<<"MODIFICAR DNI";
+    locate(30,11);cout<<"INGRESE EL DNI DEL EMPLEADO: ";
     cin>>auxDni;
     pos=buscarposDniPreLiq(auxDni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
-    cout<<"INGRESE EL NUEVO DNI: ";
+    locate(30,13);cout<<"INGRESE EL NUEVO DNI: ";
     cin>>auxDni;
 
     reg.leerDeDisco(pos);
@@ -1300,17 +1342,22 @@ void modificarDNIPreLiquidacion(){
     modificarEnDiscoPreLiq(reg,pos);
 }
 
+
 void modificarFeriadosPreLiquidacion(){
     PreLiquidacion reg;
     int auxDni,nuevoFeriados,pos=0;
-    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+    locate(40,9);cout<<"MODIFICAR FERIADO";
+    locate(30,11);cout<<"INGRESE EL DNI DEL EMPLEADO: ";
     cin>>auxDni;
     pos=buscarposDniPreLiq(auxDni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
-    cout<<"INGRESE LOS FERIADOS TRABAJADOS: ";
+    locate(30,13);cout<<"INGRESE LOS FERIADOS TRABAJADOS: ";
     cin>>nuevoFeriados;
 
     reg.leerDeDisco(pos);
@@ -1322,15 +1369,19 @@ void modificarFeriadosPreLiquidacion(){
 void modificarHorasTrabajadasPreLiquidacion(){
     PreLiquidacion reg;
     int auxDni,pos=0;
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+    locate(40,9);cout<<"MODIFICAR HORAS TRABAJADAS";
     float nuevoHorasTrabajadas;
-    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    locate(30,11);cout<<"INGRESE EL DNI DEL EMPLEADO: ";
     cin>>auxDni;
     pos=buscarposDniPreLiq(auxDni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
-    cout<<"INGRESE LA CANTIDAD DE HORAS TRABAJADAS: ";
+    locate(30,13);cout<<"INGRESE LA CANTIDAD DE HORAS TRABAJADAS: ";
     cin>>nuevoHorasTrabajadas;
 
     reg.leerDeDisco(pos);
@@ -1343,14 +1394,18 @@ void modificarPresentismoPreLiquidacion(){
     PreLiquidacion reg;
     int auxDni,pos=0;
     char presentismo[3];
-    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+    locate(40,9);cout<<"MODIFICAR PRESENTISMO";
+    locate(30,11);cout<<"INGRESE EL DNI DEL EMPLEADO: ";
     cin>>auxDni;
     pos=buscarposDniPreLiq(auxDni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI";
+        system("pause>nul");
         return;
     }
-    cout<<"PRESENTISMO (SI/NO): ";
+    locate(30,13);cout<<"PRESENTISMO (SI/NO): ";
     cin>>presentismo;
 
 
@@ -1364,14 +1419,18 @@ void modificarPuntualidadPreLiquidacion(){
     PreLiquidacion reg;
     int auxDni,pos=0;
     char puntualidad[3];
-    cout<<"INGRESE EL DNI DEL EMPLEADO: ";
+    recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
+    separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
+    locate(40,9);cout<<"MODIFICAR PUNTUALIDAD";
+    locate(30,11);cout<<"INGRESE EL DNI DEL EMPLEADO: ";
     cin>>auxDni;
     pos=buscarposDniPreLiq(auxDni);
     if(pos==-1){
-        cout<<"EL DNI NO EXISTE";
+        locate(25,17);cout<<"EL DNI NO EXISTE";
+        system("pause>nul");
         return;
     }
-    cout<<"PUNTUALIDAD (SI/NO): ";
+    locate(30,13);cout<<"PUNTUALIDAD (SI/NO): ";
     cin>>puntualidad;
 
 
@@ -1398,11 +1457,14 @@ bool modificarEnDiscoDescuentos(Descuentos reg){
 void modificarJubilacion(){
     Descuentos reg;
     float nuevoValor;
-    cout<<"INGRESE EL NUEVO PORCENTAJE: ";
+    cuadroModificacionDesc();
+    locate(30,9);cout<<"MODIFICAR PORCENTAJE DE JUBILACION";
+    locate(30,11);cout<<"INGRESE EL NUEVO PORCENTAJE: ";
     cin>>nuevoValor;
     while(nuevoValor<0){
-        cout<<"NO SE PERMITE UN NUMERO NEGATIVO.\nINGRESE EL NUEVO PORCENTAJE: ";
-        cin>>nuevoValor;
+        locate(25,15);cout<<"NO SE PERMITE UN NUMERO NEGATIVO";
+        locate(59,11);cout<<"        ";
+        locate(59,11);cin>>nuevoValor;
     }
     reg.leerDeDisco(0);
     reg.setJubilacion(nuevoValor);
@@ -1413,11 +1475,14 @@ void modificarJubilacion(){
 void modificarDescuentLey19032(){
     Descuentos reg;
     float nuevoValor;
-    cout<<"INGRESE EL NUEVO PORCENTAJE: ";
+    cuadroModificacionDesc();
+    locate(30,9);cout<<"MODIFICAR DESCUENTO LEY 19032";
+    locate(30,11);cout<<"INGRESE EL NUEVO PORCENTAJE: ";
     cin>>nuevoValor;
     while(nuevoValor<0){
-        cout<<"NO SE PERMITE UN NUMERO NEGATIVO.\nINGRESE EL NUEVO PORCENTAJE: ";
-        cin>>nuevoValor;
+        locate(25,15);cout<<"NO SE PERMITE UN NUMERO NEGATIVO!";
+        locate(59,11);cout<<"               ";
+        locate(59,11);cin>>nuevoValor;
     }
     reg.leerDeDisco(0);
     reg.setLey19032(nuevoValor);
@@ -1428,11 +1493,14 @@ void modificarDescuentLey19032(){
 void modificarObraSocial(){
     Descuentos reg;
     float nuevoValor;
-    cout<<"INGRESE EL NUEVO PORCENTAJE: ";
+    cuadroModificacionDesc();
+    locate(30,9);cout<<"MOFICICAR PORCENTAJE DE OBRA SOCIAL";
+    locate(30,11);cout<<"INGRESE EL NUEVO PORCENTAJE: ";
     cin>>nuevoValor;
     while(nuevoValor<0){
-        cout<<"NO SE PERMITE UN NUMERO NEGATIVO.\nINGRESE EL NUEVO PORCENTAJE: ";
-        cin>>nuevoValor;
+        locate(25,15);cout<<"NO SE PERMITE UN NUMERO NEGATIVO!";
+        locate(59,11);cout<<"               ";
+        locate(59,11);cin>>nuevoValor;
     }
     reg.leerDeDisco(0);
     reg.setObraSocial(nuevoValor);
@@ -1443,11 +1511,14 @@ void modificarObraSocial(){
 void modificarSEC(){
     Descuentos reg;
     float nuevoValor;
-    cout<<"INGRESE EL NUEVO PORCENTAJE: ";
+    cuadroModificacionDesc();
+    locate(30,9);cout<<"MODIFICAR PORCENTAJE DE SEC";
+    locate(30,11);cout<<"INGRESE EL NUEVO PORCENTAJE: ";
     cin>>nuevoValor;
     while(nuevoValor<0){
-        cout<<"NO SE PERMITE UN NUMERO NEGATIVO.\nINGRESE EL NUEVO PORCENTAJE: ";
-        cin>>nuevoValor;
+        locate(25,15);cout<<"NO SE PERMITE UN NUMERO NEGATIVO!";
+        locate(59,11);cout<<"               ";
+        locate(59,11);cin>>nuevoValor;
     }
     reg.leerDeDisco(0);
     reg.setSEC(nuevoValor);
@@ -1458,11 +1529,14 @@ void modificarSEC(){
 void modificarFAEC(){
     Descuentos reg;
     float nuevoValor;
-    cout<<"INGRESE EL NUEVO PORCENTAJE: ";
+    cuadroModificacionDesc();
+    locate(30,9);cout<<"MODIFICAR PORCENTAJE DE FAEC";
+    locate(30,11);cout<<"INGRESE EL NUEVO PORCENTAJE: ";
     cin>>nuevoValor;
     while(nuevoValor<0){
-        cout<<"NO SE PERMITE UN NUMERO NEGATIVO.\nINGRESE EL NUEVO PORCENTAJE: ";
-        cin>>nuevoValor;
+        locate(25,15);cout<<"NO SE PERMITE UN NUMERO NEGATIVO!";
+        locate(59,11);cout<<"               ";
+        locate(59,11);cin>>nuevoValor;
     }
     reg.leerDeDisco(0);
     reg.setFAEC(nuevoValor);
