@@ -184,6 +184,7 @@ void Liquidacion::cargarAutomatico(){
     int auxDni, pos=0, posEmpleado=0, posCargo=0;
     char nombreDelCargo[25];
     float descuentosHorasNoTrabajdas,horasNoTrabajadas;
+    float asistenciaPorcent,puntualidadPorcent,feriadosPorcent,antiguedadPorcent;
     //float sueldoBRUTO=-1, sueldoBASICO=-1, sueldoNETO=-1;
     float sueldoBASICO=-1;
     PreLiquidacion preLiq;
@@ -220,8 +221,11 @@ void Liquidacion::cargarAutomatico(){
                             feriado=preLiq.getFeriados()*((cargo.getPlusFeriado()/100)*empleado.getSueldo());
                             sueldoBRUTO=empleado.getSueldo()+asistencia+puntualidad+antiguedad+feriado;
                             sueldoBASICO=empleado.getSueldo();
-                            ///Lo que sigue es para generar el recibo
-
+                            ///porcentajes del recibo
+                            asistenciaPorcent=cargo.getAsisistencia();
+                            feriadosPorcent=cargo.getPlusFeriado();
+                            puntualidadPorcent=cargo.getPuntualidad();
+                            antiguedadPorcent=cargo.getAntiguedad();
                         }
                     }
                 }
@@ -229,6 +233,7 @@ void Liquidacion::cargarAutomatico(){
         }
     }//// CORREGI EL PORCENTAJE SE SACA SOBRE EL SUELDO BRUTO
     //// ACA DESCONTAMOS Y SACAMOS EL SUELDO NETO
+
     if(desc.leerDeDisco(0)==true){
         jubilacion=(desc.getJubilacion()*sueldoBRUTO)/100;
         obraSocial=(desc.getObraSocial()*sueldoBRUTO)/100;
@@ -252,7 +257,7 @@ void Liquidacion::cargarAutomatico(){
     locate(10,6);cout<<empleado.getNombre()<<" "<<empleado.getApellido();
     locate(10,7);cout<<"FECHA INGRESO: ";
     locate(10,8);empleado.getFechaIngreso().mostrar();
-    locate(10,9);cout<<"PERIODO TRABAJADO: "<<"--AGREGAR PERIODO-- EJ: 2/6/2021 AL 2/7/2021";
+    locate(10,9);cout<<"FECHA DE LIQUIDACION: "<<periodoLiquidacion.getDia()<<"/"<<periodoLiquidacion.getMes()<<"/"<<periodoLiquidacion.getAnio();
     //locate(40,7);cout<<"SUELDO BASICO: ";
     //locate(41,8);cout<<"$"<<empleado.getSueldo();
     locate(70,5);cout<<"DNI: "<<dni;
@@ -265,26 +270,27 @@ void Liquidacion::cargarAutomatico(){
     separadorH(POSMENUX,POSMENUY+8,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     locate(9,13);cout<<"SUELDO BASICO";locate(83,13);cout<<"$ "<<empleado.getSueldo();
     locate(9,14);cout<<"HORAS NO TRABAJADAS";locate(40,14);cout<<horasNoTrabajadas<<" horas";locate(68,14);cout<<"$ "<<descuentosHorasNoTrabajdas;
-    locate(9,15);cout<<"ANTIGUEDAD";locate(40,15);cout<<"% ";locate(83,15);cout<<"$ "<<antiguedad;
-    locate(9,16);cout<<"PRESENTISMO";locate(40,16);cout<<"% ";locate(83,16);cout<<"$ "<<asistencia;
-    locate(9,17);cout<<"PUNTUALIDAD";locate(40,17);cout<<"% ";locate(83,17);cout<<"$ "<<puntualidad;
-    locate(9,18);cout<<"PLUS FERIADO/S";locate(40,18);cout<<"% ";locate(83,18);cout<<"$ "<<feriado;
+    locate(9,15);cout<<"ANTIGUEDAD";locate(40,15);cout<<antiguedadPorcent<<"%";locate(83,15);cout<<"$ "<<antiguedad;
+    locate(9,16);cout<<"PRESENTISMO";locate(40,16);cout<<asistenciaPorcent<<"%";locate(83,16);cout<<"$ "<<asistencia;
+    locate(9,17);cout<<"PUNTUALIDAD";locate(40,17);cout<<puntualidadPorcent<<"%";locate(83,17);cout<<"$ "<<puntualidad;
+    locate(9,18);cout<<"PLUS FERIADO/S";locate(40,18);cout<<feriadosPorcent<<"%";locate(83,18);cout<<"$ "<<feriado;
     locate(9,20);cout<<"SUB-TOTAL";locate(83,20);cout<<"$ "<<sueldoBRUTO;
     /////////////////////// SEGUNDA PARTE //////////////////////////////////
     separadorH(POSMENUX,POSMENUY+17,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     /////////////////////// TERCERA PARTE //////////////////////////////////
     locate(9,22);cout<<"DEDUCCIONES";locate(51,22);cout<<"%";locate(70,22);cout<<"IMPORTE";
     separadorH(POSMENUX,POSMENUY+19,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
-    locate(9,24);cout<<"JUBILACION";locate(50,24);cout<<"%";locate(68,24);cout<<"$ "<<jubilacion<<endl;
-    locate(9,25);cout<<"OBRA SOCIAL";locate(50,25);cout<<"%";locate(68,25);cout<<"$ "<<obraSocial<<endl;
-    locate(9,26);cout<<"LEY 19032";locate(50,26);cout<<"%";locate(68,26);cout<<"$ "<<ley19032<<endl;
-    locate(9,27);cout<<"SEC";locate(50,27);cout<<"%";locate(68,27);cout<<"$ "<<SEC<<endl;
-    locate(9,28);cout<<"FAEC";locate(50,28);cout<<"%";locate(68,28);cout<<"$ "<<FAEC<<endl;
+    locate(9,24);cout<<"JUBILACION";locate(50,24);cout<<desc.getJubilacion()<<"%";locate(68,24);cout<<"$ "<<jubilacion<<endl;
+    locate(9,25);cout<<"OBRA SOCIAL";locate(50,25);cout<<desc.getObraSocial()<<"%";locate(68,25);cout<<"$ "<<obraSocial<<endl;
+    locate(9,26);cout<<"LEY 19032";locate(50,26);cout<<desc.getLey19032()<<"%";locate(68,26);cout<<"$ "<<ley19032<<endl;
+    locate(9,27);cout<<"SEC";locate(50,27);cout<<desc.getSEC()<<"%";locate(68,27);cout<<"$ "<<SEC<<endl;
+    locate(9,28);cout<<"FAEC";locate(50,28);cout<<desc.getFAEC()<<"%";locate(68,28);cout<<"$ "<<FAEC<<endl;
     locate(9,30);cout<<"DEDUCCIONES";locate(83,30);cout<<"$ "<<deducciones;
     separadorH(POSMENUX,POSMENUY+27,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     /////////////////////// TERCERA PARTE //////////////////////////////////
     locate(40,32);cout<<"IMPORTE A COBRAR: ";locate(83,32);cout<<"$ "<<sueldoNETO;
-
+    separadorV(POSMENUX+26,POSMENUY+8,ALTO_MENU-19,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4puntas(POSMENUX+26,POSMENUY+17,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
     /*int fila, cant=5;
     fila=32;
     dibujarRecibo(fila);
