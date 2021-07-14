@@ -165,21 +165,6 @@ bool validarExistenciaPreliquidacion(Fecha fechaP,int dni){
     return false;
 }
 
-/*
-float generarSueldoBruto(){
-    int dni, pos=0;
-    Liquidacion obj;
-    PreLiquidacion reg;
-    Empleado emp;
-    cout<<"INTRODUZCA EL DNI DEL EMPLEADO: ";
-    cin>>dni;
-    while(reg.leerDeDisco(pos++)){
-        if(reg.getDni==dni){
-
-        }
-    }
-}*/
-
 void Liquidacion::cargarAutomatico(){
     int auxDni, pos=0, posEmpleado=0, posCargo=0;
     char nombreDelCargo[25];
@@ -194,10 +179,18 @@ void Liquidacion::cargarAutomatico(){
     Fecha peridioLiq;
     cout<<"INTRODUZCA EL DNI DEL EMPLEADO: ";
     cin>>auxDni;
-    if(buscarEmpleado(auxDni)==false)cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI"<<endl;
+    if(buscarEmpleado(auxDni)==false){
+        cout<<"NO EXISTE EMPLEADO CON ESE NUMERO DE DNI"<<endl;
+        system("pause>nul");
+        return;
+    }
     cout<<"INGRESE EL PERIODO DE LIQUIDACION: ";
     peridioLiq.cargar();
-    if(validarExistenciaPreliquidacion(peridioLiq,auxDni)==false){cout<<"NO EXISTE PRELIQUIDACION DE EMPLEADO PARA ESTE PERIODO";}
+    if(validarExistenciaPreliquidacion(peridioLiq,auxDni)==false){
+        cout<<"NO EXISTE PRELIQUIDACION DE EMPLEADO PARA ESTE PERIODO";
+        system("pause>nul");
+        return;
+    }
 
     while(preLiq.leerDeDisco(pos++)){
         if(preLiq.getDni()==auxDni){
@@ -246,11 +239,8 @@ void Liquidacion::cargarAutomatico(){
     ///dibujartabla 32 filas 5 columnas
     system("cls");
     int POSMENUX=5,POSMENUY=4, ANCHO_MENU=91,ALTO_MENU=29;
-    int opc=1,cursorX,cursorY;
     hidecursor();
     float deducciones=jubilacion+obraSocial+ley19032+SEC+FAEC;
-    cursorX=POSMENUX+1;
-    cursorY=POSMENUY+3;
     recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
     /////////////////////// PRIMERA PARTE //////////////////////////////////
     locate(10,5);cout<<"Nombre y apellido ";
@@ -258,86 +248,60 @@ void Liquidacion::cargarAutomatico(){
     locate(10,7);cout<<"FECHA INGRESO: ";
     locate(10,8);empleado.getFechaIngreso().mostrar();
     locate(10,9);cout<<"FECHA DE LIQUIDACION: "<<periodoLiquidacion.getDia()<<"/"<<periodoLiquidacion.getMes()<<"/"<<periodoLiquidacion.getAnio();
-    //locate(40,7);cout<<"SUELDO BASICO: ";
-    //locate(41,8);cout<<"$"<<empleado.getSueldo();
-    locate(70,5);cout<<"DNI: "<<dni;
-    locate(70,6);cout<<"--NOMBRE DEL CARGO--";
-    locate(70,7);cout<<nombreDelCargo;
+    locate(70,6);cout<<"DNI: "<<dni;
+    locate(70,7);cout<<"CARGO DEL EMPLEADO";
+    locate(70,8);cout<<nombreDelCargo;
     /////////////////////// PRIMERA PARTE //////////////////////////////////
     separadorH(POSMENUX,POSMENUY+6,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     /////////////////////// SEGUNDA PARTE //////////////////////////////////
     locate(9,11);cout<<"HABERES";locate(40,11);cout<<"%";locate(84,11);cout<<"IMPORTE";
     separadorH(POSMENUX,POSMENUY+8,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     locate(9,13);cout<<"SUELDO BASICO";locate(83,13);cout<<"$ "<<empleado.getSueldo();
-    locate(9,14);cout<<"HORAS NO TRABAJADAS";locate(40,14);cout<<horasNoTrabajadas<<" horas";locate(68,14);cout<<"$ "<<descuentosHorasNoTrabajdas;
-    locate(9,15);cout<<"ANTIGUEDAD";locate(40,15);cout<<antiguedadPorcent<<"%";locate(83,15);cout<<"$ "<<antiguedad;
-    locate(9,16);cout<<"PRESENTISMO";locate(40,16);cout<<asistenciaPorcent<<"%";locate(83,16);cout<<"$ "<<asistencia;
-    locate(9,17);cout<<"PUNTUALIDAD";locate(40,17);cout<<puntualidadPorcent<<"%";locate(83,17);cout<<"$ "<<puntualidad;
-    locate(9,18);cout<<"PLUS FERIADO/S";locate(40,18);cout<<feriadosPorcent<<"%";locate(83,18);cout<<"$ "<<feriado;
+    locate(9,14);cout<<"HORAS NO TRABAJADAS";locate(37,14);cout<<horasNoTrabajadas<<" horas";locate(67,14);cout<<"$ "<<descuentosHorasNoTrabajdas;
+    locate(9,15);cout<<"ANTIGUEDAD";locate(37,15);cout<<antiguedadPorcent<<"%";locate(83,15);cout<<"$ "<<antiguedad;
+    locate(9,16);cout<<"PRESENTISMO";locate(37,16);cout<<asistenciaPorcent<<"%";locate(83,16);cout<<"$ "<<asistencia;
+    locate(9,17);cout<<"PUNTUALIDAD";locate(37,17);cout<<puntualidadPorcent<<"%";locate(83,17);cout<<"$ "<<puntualidad;
+    locate(9,18);cout<<"PLUS FERIADO/S";locate(37,18);cout<<feriadosPorcent<<"%";locate(83,18);cout<<"$ "<<feriado;
     locate(9,20);cout<<"SUB-TOTAL";locate(83,20);cout<<"$ "<<sueldoBRUTO;
     /////////////////////// SEGUNDA PARTE //////////////////////////////////
     separadorH(POSMENUX,POSMENUY+17,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     /////////////////////// TERCERA PARTE //////////////////////////////////
-    locate(9,22);cout<<"DEDUCCIONES";locate(51,22);cout<<"%";locate(70,22);cout<<"IMPORTE";
+    locate(9,22);cout<<"DEDUCCIONES";locate(54,22);cout<<"%";locate(68,22);cout<<"IMPORTE";
     separadorH(POSMENUX,POSMENUY+19,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
-    locate(9,24);cout<<"JUBILACION";locate(50,24);cout<<desc.getJubilacion()<<"%";locate(68,24);cout<<"$ "<<jubilacion<<endl;
-    locate(9,25);cout<<"OBRA SOCIAL";locate(50,25);cout<<desc.getObraSocial()<<"%";locate(68,25);cout<<"$ "<<obraSocial<<endl;
-    locate(9,26);cout<<"LEY 19032";locate(50,26);cout<<desc.getLey19032()<<"%";locate(68,26);cout<<"$ "<<ley19032<<endl;
-    locate(9,27);cout<<"SEC";locate(50,27);cout<<desc.getSEC()<<"%";locate(68,27);cout<<"$ "<<SEC<<endl;
-    locate(9,28);cout<<"FAEC";locate(50,28);cout<<desc.getFAEC()<<"%";locate(68,28);cout<<"$ "<<FAEC<<endl;
-    locate(9,30);cout<<"DEDUCCIONES";locate(83,30);cout<<"$ "<<deducciones;
+    locate(9,24);cout<<"JUBILACION";locate(54,24);cout<<desc.getJubilacion()<<"%";locate(67,24);cout<<"$ "<<jubilacion<<endl;
+    locate(9,25);cout<<"OBRA SOCIAL";locate(54,25);cout<<desc.getObraSocial()<<"%";locate(67,25);cout<<"$ "<<obraSocial<<endl;
+    locate(9,26);cout<<"LEY 19032";locate(54,26);cout<<desc.getLey19032()<<"%";locate(67,26);cout<<"$ "<<ley19032<<endl;
+    locate(9,27);cout<<"SEC";locate(54,27);cout<<desc.getSEC()<<"%";locate(67,27);cout<<"$ "<<SEC<<endl;
+    locate(9,28);cout<<"FAEC";locate(54,28);cout<<desc.getFAEC()<<"%";locate(67,28);cout<<"$ "<<FAEC<<endl;
+    locate(9,30);cout<<"SUB-TOTAL";locate(83,30);cout<<"$ "<<deducciones;
     separadorH(POSMENUX,POSMENUY+27,ANCHO_MENU,LETRA_COLOR,FONDO_COLOR);
     /////////////////////// TERCERA PARTE //////////////////////////////////
-    locate(40,32);cout<<"IMPORTE A COBRAR: ";locate(83,32);cout<<"$ "<<sueldoNETO;
-    separadorV(POSMENUX+26,POSMENUY+8,ALTO_MENU-19,LETRA_COLOR,FONDO_COLOR);
-    separadorV_4puntas(POSMENUX+26,POSMENUY+17,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
-    /*int fila, cant=5;
-    fila=32;
-    dibujarRecibo(fila);
-    for(int i=0;i<cant;i++){
-        //reg.leerDeDisco(i);
-        //ampliarTablaDescuentos(fila);
-        //mostrarDescuentosRecuadro(fila,reg);
-        fila++;
-        if(i!=cant-1){
-                cout<<"HOLAAAAA";
-            separadorH(5,fila,57,LETRA_COLOR,FONDO_COLOR);
-            setlocale(LC_ALL,"C");
-            locate(18, fila);
-            cout<<"HOLAAAA";
-            cout<<(char)206;
-            locate(29, fila);
-            cout<<(char)206;
-            locate(45, fila);
-            cout<<(char)206;
-            locate(51, fila);
-            cout<<(char)206;
-            setlocale(LC_ALL,"spanish");
-            fila++;
-        }*/
+    locate(56,32);cout<<"IMPORTE A COBRAR";locate(83,32);cout<<"$ "<<sueldoNETO;
 
-/*
-    cout<<"SUELDO BRUTO: $"<<sueldoBRUTO<<endl;
-    cout<<"SUELDO NETO: $"<<sueldoNETO<<endl;
 
-    cout<<"DNI: "<<dni<<endl;
-    cout<<"SUELDO: $"<<sueldo<<endl;
-    cout<<"ANTIGUEDAD: $"<<antiguedad<<endl;
-    cout<<"ASISTENCIA: $"<<asistencia<<endl;
-    cout<<"PUNTUALIDAD: $"<<puntualidad<<endl;
-    cout<<"FERIADO: $"<<feriado<<endl;
+    separadorV(POSMENUX+27,POSMENUY+8,ALTO_MENU-19,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Inicio(POSMENUX+27,POSMENUY+6,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4puntas(POSMENUX+27,POSMENUY+17,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Final(POSMENUX+27,POSMENUY+20,ALTO_MENU-22,LETRA_COLOR,FONDO_COLOR);
 
-    cout<<"JUBILACION: $"<<jubilacion<<endl;
-    cout<<"OBRA SOCIAL: $"<<obraSocial<<endl;
-    cout<<"LEY 19032: $"<<ley19032<<endl;
-    cout<<"SEC: $"<<SEC<<endl;
-    cout<<"FAEC: $"<<FAEC<<endl<<endl;
-    cout<<"SUELDO BRUTO: $: "<<sueldoBRUTO<<endl;
-    cout<<"SUELDO NETO: $: "<<sueldoNETO<<endl<<endl;
-    cout<<"-----------------------------------"<<endl<<endl;*/
+    separadorV(POSMENUX+43,POSMENUY+8,ALTO_MENU-19,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Inicio(POSMENUX+43,POSMENUY+6,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4puntas(POSMENUX+43,POSMENUY+17,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Final(POSMENUX+43,POSMENUY+20,ALTO_MENU-22,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4PuntasFinal(POSMENUX+43,POSMENUY+27,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+
+    separadorV(POSMENUX+58,POSMENUY+8,ALTO_MENU-19,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Inicio(POSMENUX+58,POSMENUY+6,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4puntas(POSMENUX+58,POSMENUY+17,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Final(POSMENUX+58,POSMENUY+20,ALTO_MENU-22,LETRA_COLOR,FONDO_COLOR);
+
+    separadorV(POSMENUX+74,POSMENUY+8,ALTO_MENU-19,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Inicio(POSMENUX+74,POSMENUY+6,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4puntas(POSMENUX+74,POSMENUY+17,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
+    separadorV_Final(POSMENUX+74,POSMENUY+20,ALTO_MENU-22,LETRA_COLOR,FONDO_COLOR);
+    separadorV_4PuntasFinal(POSMENUX+74,POSMENUY+27,ALTO_MENU-27,LETRA_COLOR,FONDO_COLOR);
 
     system("pause>nul");
-    cout<<endl;
 }
 
 bool generarliquidacion(){

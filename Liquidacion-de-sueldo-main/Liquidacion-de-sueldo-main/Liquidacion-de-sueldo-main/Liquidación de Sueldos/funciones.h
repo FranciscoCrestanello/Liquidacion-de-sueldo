@@ -473,10 +473,9 @@ int MenuLiquidacion(){
                     mostrarLiquidaciones();
                     system("pause>nul");
                     system("cls");
-                    system("pause");
                 break;
             case 3: generarliquidacion();
-                    system("pause");
+                    system("pause>nul");
                 break;
             case 0: return 0;
                     break;
@@ -1656,7 +1655,7 @@ void modificarSueldoBasicoCargo(){
     cin>>numCargo;
     pos=buscarPosEnTablaCargo(numCargo);
     if(pos==-1){
-        locate(35,17);cout<<"EL CARGO NO EXISTE."<<endl;
+        locate(35,17);cout<<"EL CARGO NO EXISTE.";
         system("pause>nul");
         return;
         /*cout<<"INGRESE EL NUMERO DE CARGO: ";
@@ -1665,13 +1664,13 @@ void modificarSueldoBasicoCargo(){
     }
 
     sueldoBasicoViejo=buscarSueldoBasicoCargo(pos);
-    locate(30,12);cout<<"SUELDO ACTUAL: $"<<sueldoBasicoViejo<<endl;
+    locate(30,12);cout<<"SUELDO ACTUAL: $"<<sueldoBasicoViejo;
     locate(30,13);cout<<"INGRESE EL NUEVO SUELDO BASICO: $ ";
     cin>>sueldoBasicoNuevo;
     while(sueldoBasicoNuevo<=sueldoBasicoViejo){
-        cout<<"EL SUELDO DEBE SER MAYOR AL SUELDO ANTERIOR."<<endl;
-        cout<<"SUELDO ACTUAL: $"<<sueldoBasicoViejo<<endl;
-        cout<<"INGRESE EL SUELDO NUEVO: $";
+        locate(30,12);cout<<"EL SUELDO DEBE SER MAYOR AL SUELDO ANTERIOR.";
+        locate(30,13);cout<<"SUELDO ACTUAL: $"<<sueldoBasicoViejo;
+        locate(30,14);cout<<"INGRESE EL SUELDO NUEVO: $";
         cin>>sueldoBasicoNuevo;
     }
     reg.leerDeDisco(pos);
@@ -1696,14 +1695,13 @@ void modificarAntiguedadDelCargo(){
         cin>>numCargo;
         pos=buscarPosEnTablaCargo(numCargo);*/
     }
-    /*
-    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    locate(30,12);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
     cin>>porcentajeNuevo;
     while(porcentajeNuevo<0){
-        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
-        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        locate(30,12);cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0.";
+        locate(30,13);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
         cin>>porcentajeNuevo;
-    }*/
+    }
     reg.leerDeDisco(pos);
     reg.setAntiguedad(porcentajeNuevo);
     modificarEnDiscoCargos(reg,pos);
@@ -1725,14 +1723,13 @@ void modificarAsistenciaDelCargo(){
         /*cin>>numCargo;
         pos=buscarPosEnTablaCargo(numCargo);*/
     }
-    /*
-    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    locate(30,12);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
     cin>>porcentajeNuevo;
     while(porcentajeNuevo<0){
-        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
-        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        locate(30,12);cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0.";
+        locate(30,13);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
         cin>>porcentajeNuevo;
-    }*/
+    }
     reg.leerDeDisco(pos);
     reg.setAsisistencia(porcentajeNuevo);
     modificarEnDiscoCargos(reg,pos);
@@ -1755,14 +1752,13 @@ void modificarPuntualidadDelCargo(){
         cin>>numCargo;
         pos=buscarPosEnTablaCargo(numCargo);*/
     }
-    /*
-    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    locate(30,12);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
     cin>>porcentajeNuevo;
     while(porcentajeNuevo<0){
-        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
-        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        locate(30,12);cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0.";
+        locate(30,13);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
         cin>>porcentajeNuevo;
-    }*/
+    }
     reg.leerDeDisco(pos);
     reg.setPuntualidad(porcentajeNuevo);
     modificarEnDiscoCargos(reg,pos);
@@ -1785,14 +1781,13 @@ void modificarFeriadoDelCargo(){
         cin>>numCargo;
         pos=buscarPosEnTablaCargo(numCargo);*/
     }
-    /*
-    cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+    locate(30,12);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
     cin>>porcentajeNuevo;
     while(porcentajeNuevo<0){
-        cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
-        cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
+        locate(30,12);cout<<"EL PORCENTAJE DEBE SER MAYOR/IGUAL A 0."<<endl;
+        locate(30,13);cout<<"INGRESE EL NUEVO PORCENTAJE: % ";
         cin>>porcentajeNuevo;
-    }*/
+    }
     reg.leerDeDisco(pos);
     reg.setPlusFeriado(porcentajeNuevo);
     modificarEnDiscoCargos(reg,pos);

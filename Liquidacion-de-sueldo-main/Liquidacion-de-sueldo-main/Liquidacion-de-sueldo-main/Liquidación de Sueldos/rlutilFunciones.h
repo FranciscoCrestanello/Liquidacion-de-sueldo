@@ -67,6 +67,61 @@ void separadorV(short iniX, short iniY, short alto, short colorLinea=WHITE, shor
     setlocale(LC_ALL, "spanish");
 }
 
+void separadorV_4puntas(short iniX, short iniY, short alto, short colorLinea=WHITE, short colorFondo=BLACK){
+    setlocale(LC_ALL, "C");
+    int i;
+    locate(iniX,iniY);
+    cout<<(char)206;
+    for(i=1; i<alto; i++){
+        locate(iniX,iniY+i);
+        cout<<(char)186;
+    }
+    locate(iniX,iniY+alto);
+    cout<<(char)206;
+    setlocale(LC_ALL, "spanish");
+}
+
+void separadorV_Final(short iniX, short iniY, short alto, short colorLinea=WHITE, short colorFondo=BLACK){
+    setlocale(LC_ALL, "C");
+    int i;
+    locate(iniX,iniY);
+    cout<<(char)186;
+    for(i=1; i<alto; i++){
+        locate(iniX,iniY+i);
+        cout<<(char)186;
+    }
+    locate(iniX,iniY+alto);
+    cout<<(char)202;
+    setlocale(LC_ALL, "spanish");
+}
+void separadorV_Inicio(short iniX, short iniY, short alto, short colorLinea=WHITE, short colorFondo=BLACK){
+    setlocale(LC_ALL, "C");
+    int i;
+    locate(iniX,iniY);
+    cout<<(char)203;
+    for(i=1; i<alto; i++){
+        locate(iniX,iniY+i);
+        cout<<(char)186;
+    }
+    locate(iniX,iniY+alto);
+    cout<<(char)206;
+    setlocale(LC_ALL, "spanish");
+}
+
+void separadorV_4PuntasFinal(short iniX, short iniY, short alto, short colorLinea=WHITE, short colorFondo=BLACK){
+    setlocale(LC_ALL, "C");
+    int i;
+    locate(iniX,iniY);
+    cout<<(char)206;
+    for(i=1; i<alto; i++){
+        locate(iniX,iniY+i);
+        cout<<(char)186;
+    }
+    locate(iniX,iniY+alto);
+    cout<<(char)202;
+    setlocale(LC_ALL, "spanish");
+}
+
 bool AjustarVentana(int Ancho, int Alto) {
 	_COORD Coordenada;
 	Coordenada.X = Ancho;

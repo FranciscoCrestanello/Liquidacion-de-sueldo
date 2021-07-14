@@ -202,7 +202,6 @@ void Empleado::cargar(){
 
 void Empleado::mostrar(){
     int POSMENUX=28,POSMENUY=7, ANCHO_MENU=50,ALTO_MENU=15;
-    int cursorX,cursorY;
     recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
     locate(30,8);cout<<"NOMBRE: "<<nombre;
     locate(30,9);cout<<"APELLIDO: "<<apellido;
