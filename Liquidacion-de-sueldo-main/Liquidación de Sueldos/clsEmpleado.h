@@ -181,7 +181,7 @@ void Empleado::cargar(){
     locate(5,19);cout<<"                                        ";
 
     locate(27,12);cin>>num;
-    while(num<1){   ///TODO ARREGLAR VACIO
+    while(num<1){
             locate(4,10);cout<<"!";
             locate(5,19);cout<<" ERROR EL CAMPO NO PUEDE QUEDAR VACIO";
             locate(27,12);cin>>num;
@@ -338,13 +338,5 @@ bool validarIngreso(Fecha obj){
     return false;
 }
 
-//-------------VERIFICAR VACIO-------------///
-
-bool Verificar_vacio(const char* n) {
-    if (strcmp(n,"")!=0 && strcmp(n,"")!=32) {
-        return true;
-    }
-    return false;
-}
 
 #endif // CLSEMPLEADO_H_INCLUDED

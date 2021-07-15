@@ -1022,7 +1022,7 @@ bool modificarDomicilio(){
 
 //-------------MODIFICAR TELEFONO-------------------------//
 
-bool modificarTelefono(){ //TODO VALIDAR VACIO DEL NUMERO DE TELEFONO
+bool modificarTelefono(){
     int _dni,ntel,pos;
     Empleado reg;
 
@@ -1145,7 +1145,7 @@ void modificarApellido(){
     modificarEnDisco(reg,pos);
 }
 
-//------------- MODIFICAR FECHA DE NACIMIENTO --------------// TODO ARREGLAR INGRESO AA/MM/AAAA
+//------------- MODIFICAR FECHA DE NACIMIENTO --------------//
 
 void modificarFechaDeNacimiento(){
     int _dni,pos,d,m,a;
@@ -1186,7 +1186,7 @@ void modificarFechaDeNacimiento(){
     modificarEnDisco(reg,pos);
 }
 
-//-------------- MODIFICAR FECHA DE INGRESO -------------// TODO ARREGLAR FECHA
+//-------------- MODIFICAR FECHA DE INGRESO -------------//
 
 void modificarFechaDeIngreso(){
     int _dni,pos;
@@ -1498,7 +1498,7 @@ void modificarHorasTrabajadasPreLiquidacion(){
     modificarEnDiscoPreLiq(reg,pos);
 }
 
-void modificarPresentismoPreLiquidacion(){ ///TODO VER QUE NO MODIFICA PRENSENTISMO
+void modificarPresentismoPreLiquidacion(){
     PreLiquidacion reg;
     Fecha obj;
     int auxDni,pos=0,d,m,a;

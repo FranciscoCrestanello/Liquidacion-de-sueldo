@@ -88,15 +88,12 @@ void PreLiquidacion::cargar(){
     locate(6,18);cout<<" PRELIQUIDACION POR MES/ANIO";
     locate(6,19);cout<<"-FERIADOS CORRESPONDE A LA CANTIDAD TRABAJADAS EN EL MES";
     locate(6,20);cout<<"-PRESENTISMO Y PUNTIALIDAD SE INGRESA SI/NO, SEGUN CORRESPONDA";
-
     char aux[3];
     int d,m,a;
     //cout<<"PERIODO DE LIQUIDACION: ";
-    fflush(stdin);
     locate(7,5);cin>>d;
     periodoLiquidacion.setDia(d);
     locate(9,5);cout<<"/";
-    fflush(stdin);
     locate(10,5);cin>>m;
     periodoLiquidacion.setMes(m);
     locate(12,5);cout<<"/";
@@ -116,12 +113,11 @@ void PreLiquidacion::cargar(){
         locate(13,5);cin>>a;
         periodoLiquidacion.setAnio(a);
     }
-    locate(6,5);cout<<"     ";
+    locate(6,5);cout<<" ";
     locate(19,5);cout<<"    ";
     locate(19,9);cout<<"                    ";
 
-    fflush(stdin);
-    locate(20,5);cin>>dni;
+    locate(22,5);cin>>dni;
     while(validarPreliquidacion(periodoLiquidacion,dni)){
         locate(6,5);cout<<"!";
         locate(19,5);cout<<"!";
@@ -149,11 +145,10 @@ void PreLiquidacion::cargar(){
         }
         periodoLiquidacion.setAnio(a);
 
-        locate(20,5);cout<<"        ";
-        locate(20,5);cin>>dni;
+        locate(20,5);cout<<"     ";
+        locate(22,5);cin>>dni;
         while(dni<1 || dni>99999999){
             locate(20,5);cout<<"         ";
-            fflush(stdin);
             locate(20,5);cin>>dni;
         }
 
