@@ -265,8 +265,7 @@ bool validarExistenciaPreliquidacion(Fecha fechaP,int dni){
     PreLiquidacion obj;
     int pos=0;
     while(obj.leerDeDisco(pos++)){
-        if(obj.getDni()==dni && obj.getFecha().getMes() == fechaP.getMes() && obj.getFecha().getAnio()==fechaP.getAnio())
-        return true;
+        if(obj.getDni()==dni && obj.getFecha().getMes() == fechaP.getMes() && obj.getFecha().getAnio()==fechaP.getAnio())return true;
     }
     return false;
 }
@@ -314,6 +313,42 @@ void Liquidacion::cargarAutomatico(){
     }
 
     while(preLiq.leerDeDisco(pos++)){
+        if(preLiq.getDni()==auxDni && peridioLiq.getDia()==preLiq.getFecha().getDia() && peridioLiq.getMes() == preLiq.getFecha().getMes() && peridioLiq.getAnio()== preLiq.getFecha().getAnio()){
+            periodoLiquidacion=preLiq.getFecha();
+            dni=auxDni;
+
+            while(empleado.leerEnDisco(posEmpleado++)){
+                if(empleado.getDni()==auxDni){
+                    sueldo=empleado.getSueldo();
+                    while(cargo.leerDeDisco(posCargo++)){
+                        if(cargo.getCargo()==empleado.getCargo()){
+                            strcpy(nombreDelCargo,cargo.getNombreCargo()); //ESTO ES PARA EL RECIBO
+                            horasNoTrabajadas=200-preLiq.getHorasTrabajadas(); // ESTO ES PARA EL RECIBO
+                            descuentosHorasNoTrabajdas=(horasNoTrabajadas*empleado.getSueldo())/100;
+
+                            antiguedad=((cargo.getAntiguedad()/100)*empleado.getSueldo())*calcularAntiguedad(empleado.getDni());
+                            if(preLiq.getPresentismo()==true)asistencia=(cargo.getAsisistencia()*empleado.getSueldo())/100;
+                            else{asistencia=0;}
+                            if(preLiq.getPuntualidad()==true)puntualidad=(cargo.getPuntualidad()*empleado.getSueldo())/100;
+                            else{puntualidad=0;}
+                            feriado=preLiq.getFeriados()*((cargo.getPlusFeriado()/100)*empleado.getSueldo());
+                            sueldoBRUTO=empleado.getSueldo()+asistencia+puntualidad+antiguedad+feriado;
+                            sueldoBRUTO-=descuentosHorasNoTrabajdas;
+                            sueldoBASICO=empleado.getSueldo();
+                            ///porcentajes del recibo
+                            asistenciaPorcent=cargo.getAsisistencia();
+                            feriadosPorcent=cargo.getPlusFeriado();
+                            puntualidadPorcent=cargo.getPuntualidad();
+                            antiguedadPorcent=cargo.getAntiguedad();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/*
+    while(preLiq.leerDeDisco(pos++)){
         if(preLiq.getDni()==auxDni){
             periodoLiquidacion=preLiq.getFecha();
             dni=auxDni;
@@ -334,6 +369,7 @@ void Liquidacion::cargarAutomatico(){
                             else{puntualidad=0;}
                             feriado=preLiq.getFeriados()*((cargo.getPlusFeriado()/100)*empleado.getSueldo());
                             sueldoBRUTO=empleado.getSueldo()+asistencia+puntualidad+antiguedad+feriado;
+                            sueldoBRUTO-=descuentosHorasNoTrabajdas;
                             sueldoBASICO=empleado.getSueldo();
                             ///porcentajes del recibo
                             asistenciaPorcent=cargo.getAsisistencia();
@@ -346,6 +382,7 @@ void Liquidacion::cargarAutomatico(){
             }
         }
     }
+*/
 
     if(desc.leerDeDisco(0)==true){
         jubilacion=(desc.getJubilacion()*sueldoBRUTO)/100;

@@ -1495,7 +1495,7 @@ void modificarHorasTrabajadasPreLiquidacion(){
 void modificarPresentismoPreLiquidacion(){
     PreLiquidacion reg;
     Fecha obj;
-    int auxDni,pos=0,d,m,a;
+    int auxDni,pos=0;
     char presentismo[3];
     recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
     separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
@@ -1524,7 +1524,7 @@ void modificarPresentismoPreLiquidacion(){
 void modificarPuntualidadPreLiquidacion(){
     PreLiquidacion reg;
     Fecha obj;
-    int auxDni,pos=0,d,m,a;
+    int auxDni,pos=0;
     char puntualidad[3];
     recuadro(20,8,60,8,LETRA_COLOR,FONDO_COLOR);
     separadorH(20,8+2,60,LETRA_COLOR,FONDO_COLOR);
