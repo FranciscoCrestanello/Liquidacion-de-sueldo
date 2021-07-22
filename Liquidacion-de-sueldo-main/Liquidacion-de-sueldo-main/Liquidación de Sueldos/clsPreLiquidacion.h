@@ -269,8 +269,11 @@ bool validarPreliquidacion(Fecha preLi,int _dni){
 
 int validarTexto(const char *rt){
     if(strcmp(rt,"si")==0 || strcmp(rt,"SI")==0){
-            return 1;}
-    else if(strcmp(rt,"no")==0 || strcmp(rt,"NO")==0){return 0;}
+        return 1;
+    }
+    else if(strcmp(rt,"no")==0 || strcmp(rt,"NO")==0){
+        return 0;
+    }
 }
 
 const char * convertirTexto(bool b){

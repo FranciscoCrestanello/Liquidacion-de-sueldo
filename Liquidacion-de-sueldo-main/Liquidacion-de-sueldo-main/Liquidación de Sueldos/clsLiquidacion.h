@@ -13,11 +13,14 @@ class Liquidacion{
 	private:
         Fecha periodoLiquidacion;
         int dni;
+        char nombre[25],apellido[25];
         float sueldo,antiguedad,asistencia,puntualidad,feriado,jubilacion;
         float obraSocial,ley19032,SEC,FAEC;
         float sueldoBRUTO, sueldoNETO;
 	public:
         // sets
+        void setNombre(const char *x){strcpy(nombre,x);}
+        void setApellido(const char *x){strcpy(apellido,x);}
         void setFecha(Fecha f){periodoLiquidacion=f;}
         void setDni(int x){dni=x;}
         void setSueldo(float x){sueldo=x;}
@@ -31,6 +34,8 @@ class Liquidacion{
         void setSEC(float x){SEC=x;}
         void setFAEC(float x){FAEC=x;}
         // gets
+        const char *getNombre(){return nombre;}
+        const char *getApellido(){return apellido;}
         int setDni(){return dni;}
         float getSueldo(){return sueldo;}
         float getAntiguedad(){return antiguedad;}
@@ -317,10 +322,12 @@ void Liquidacion::cargarAutomatico(){
             dni=auxDni;
 
             while(empleado.leerEnDisco(posEmpleado++)){
-                if(empleado.getDni()==auxDni){
+                if(empleado.getDni()==dni){
                     sueldo=empleado.getSueldo();
                     while(cargo.leerDeDisco(posCargo++)){
                         if(cargo.getCargo()==empleado.getCargo()){
+                            strcpy(nombre,empleado.getNombre());
+                            strcpy(apellido,empleado.getApellido());
 
                             strcpy(nombreDelCargo,cargo.getNombreCargo()); //ESTO ES PARA EL RECIBO
                             horasNoTrabajadas=200-preLiq.getHorasTrabajadas(); // ESTO ES PARA EL RECIBO
@@ -401,7 +408,7 @@ void Liquidacion::cargarAutomatico(){
     recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA_COLOR,FONDO_COLOR);
     ////////////////////// PRIMERA PARTE //////////////////////////////////
     locate(10,5);cout<<"Nombre y apellido ";
-    locate(10,6);cout<<empleado.getNombre()<<" "<<empleado.getApellido();
+    locate(10,6);cout<<nombre<<" "<<apellido;
     locate(10,7);cout<<"FECHA INGRESO: ";
     locate(10,8);empleado.getFechaIngreso().mostrar();
     locate(10,9);cout<<"FECHA DE LIQUIDACION: "<<periodoLiquidacion.getDia()<<"/"<<periodoLiquidacion.getMes()<<"/"<<periodoLiquidacion.getAnio();
