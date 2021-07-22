@@ -177,11 +177,18 @@ void PreLiquidacion::cargar(){
     //PRESENTISMO Y PUNTUALIDAD SON BOOLEANOS
     locate(64,5);cin>>aux;
 
+    while(validarTexto(aux)==-1){
+        locate(64,5);cout<<"    ";
+        locate(64,5);cin>>aux;
+    }
     if(validarTexto(aux)==0){setPresentismo(false);}
     else{setPresentismo(true);}
 
     locate(80,5);cin>>aux;
-
+    while(validarTexto(aux)==-1){
+        locate(80,5);cout<<"    ";
+        locate(80,5);cin>>aux;
+    }
     if(validarTexto(aux)==0){setPuntualidad(false);}
     else{setPuntualidad(true);}
 
@@ -273,6 +280,9 @@ int validarTexto(const char *rt){
     }
     else if(strcmp(rt,"no")==0 || strcmp(rt,"NO")==0){
         return 0;
+    }
+    else{
+        return -1;
     }
 }
 

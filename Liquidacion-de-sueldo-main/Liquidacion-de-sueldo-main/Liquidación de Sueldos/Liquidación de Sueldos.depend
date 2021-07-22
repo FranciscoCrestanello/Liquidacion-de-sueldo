@@ -808,7 +808,7 @@
 
 1626702574 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v13.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\funciones.h
 
-1626929533 source:c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\main.cpp
+1626951376 source:c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\main.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -825,7 +825,7 @@
 	"rlutilFunciones.h"
 	"funciones.h"
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\rlutil.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -839,25 +839,25 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsdomicilio.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsdomicilio.h
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsfecha.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsfecha.h
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clscargo.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clscargo.h
 	"rlutilFunciones.h"
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\rlutilfunciones.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\rlutilfunciones.h
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsdescuentos.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsdescuentos.h
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsempleado.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsempleado.h
 	"rlutilFunciones.h"
 
-1626951274 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clspreliquidacion.h
+1626953423 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clspreliquidacion.h
 	"rlutilFunciones.h"
 
-1626951238 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsliquidacion.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\clsliquidacion.h
 	"clsEmpleado.h"
 
-1626929533 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\funciones.h
+1626951376 c:\users\crest\desktop\liquidación de sueldos\liquidacion de sueldos v14.0\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidacion-de-sueldo-main\liquidación de sueldos\funciones.h
 
